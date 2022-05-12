@@ -19,8 +19,7 @@ namespace VActivities
 
             FormBase formBase = new FormBase();
             FormAuthorization formAuthorization = new FormAuthorization();
-            User user = null;
-
+         
             do
             {
                 if (formAuthorization.ShowDialog() == DialogResult.OK)
@@ -37,29 +36,32 @@ namespace VActivities
                         FormBase.Contex.SaveChanges();
                     }
 
-                    user = FormBase.Contex.Users.FirstOrDefault(u => u.Login == formAuthorization.Login);
+                    formBase.User = FormBase.Contex.Users.FirstOrDefault(u => u.Login == formAuthorization.Login);
 
-                    if (user == null || !user.ComparePassword(formAuthorization.Password))
+                    if (formBase.User == null || !formBase.User.ComparePassword(formAuthorization.Password))
                     {
+                        formBase.AddHistory("Попытка авторизации", $"Логин - {formAuthorization.Login} или пароль введён не верно");
                         MessageBox.Show($"Логин или пароль введён не верно", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         continue;
                     }
 
-                    if (!user.Active)
+                    if (!formBase.User.Active)
                     {
-                        MessageBox.Show($"Учётная запись {user.Login} не активна. Доступ запрещён. ", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        formBase.AddHistory("Попытка авторизации", "Учётная запись не активна");
+                        MessageBox.Show($"Учётная запись {formBase.User.Login} не активна. Доступ запрещён. ", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    if (user.Active)
+                    if (formBase.User.Active)
                     {
+                        formBase.AddHistory("Успешная авторизации", null);
                         Application.Run(new FormBase());
                     }
                 }
                 else
                     return;
                 
-            } while (user == null);
+            } while (formBase.User == null);
         }
     }
 }

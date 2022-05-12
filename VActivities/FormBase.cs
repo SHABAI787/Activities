@@ -14,10 +14,21 @@ namespace VActivities
 {
     public partial class FormBase : Form
     {
+        public User User = null;
         public static VActivitiesContext Contex = new VActivitiesContext();
         public FormBase()
         {
             InitializeComponent();
+        }
+
+        public void AddHistory(string name, string description)
+        {
+            History history = new History();
+            history.Name = name;
+            history.Description = description;
+            history.User = User;
+            Contex.History.Add(history);
+            Contex.SaveChanges();
         }
 
         private void Form1_Load(object sender, EventArgs e)
