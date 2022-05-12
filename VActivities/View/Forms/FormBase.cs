@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -51,6 +52,18 @@ namespace VActivities
             Contex.SaveChanges();
             if(Contex.Users.First().ComparePassword("123"))
                 MessageBox.Show("Пароли совпадают");
+        }
+
+        private void toolStripButtonUpdate_Click(object sender, EventArgs e)
+        {
+            Contex.Activities
+                .Include("BasisСonducting")
+                .Include("Purpose")
+                .Include("InformationObject")
+                .Include("Responsible")
+                .Include("Executor").Load();
+            bindingSourceActivities.DataSource = Contex.Activities.Local.ToBindingList();
+            dataGridViewActivities.DataSource = bindingSourceActivities;
         }
     }
 }

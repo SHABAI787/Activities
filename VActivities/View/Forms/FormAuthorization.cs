@@ -18,8 +18,10 @@ namespace VActivities.View.Forms
         public FormAuthorization()
         {
             InitializeComponent();
-            Login = "Логин";
-            Password = "Пароль";
+            //Login = "Логин";
+            //Password = "Пароль";
+            Login = "admin";
+            Password = "admin";
 
             textBoxLogin.DataBindings.Add("Text", this, "Login", false, DataSourceUpdateMode.OnPropertyChanged);
             textBoxPassword.DataBindings.Add("Text", this, "Password", false, DataSourceUpdateMode.OnPropertyChanged);

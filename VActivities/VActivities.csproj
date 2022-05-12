@@ -65,10 +65,10 @@
     <Compile Include="DataBase\Tables\Person.cs" />
     <Compile Include="DataBase\Tables\Purpose.cs" />
     <Compile Include="DataBase\Tables\User.cs" />
-    <Compile Include="FormBase.cs">
+    <Compile Include="View\Forms\FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormBase.Designer.cs">
+    <Compile Include="View\Forms\FormBase.Designer.cs">
       <DependentUpon>FormBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202205111620550_FirstMigration.cs" />
@@ -84,7 +84,7 @@
     <Compile Include="View\Forms\FormAuthorization.Designer.cs">
       <DependentUpon>FormAuthorization.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="FormBase.resx">
+    <EmbeddedResource Include="View\Forms\FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202205111620550_FirstMigration.resx">
@@ -98,6 +98,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="View\Forms\FormAuthorization.resx">
       <DependentUpon>FormAuthorization.cs</DependentUpon>
@@ -115,6 +116,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-edit-23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-import-23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-box-23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-update-23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-update-23 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-object-23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-mission-23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-bookmark-23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-persons-23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-users-23.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-history-23.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
