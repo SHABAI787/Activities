@@ -1,7 +1,7 @@
 ﻿
 namespace VActivities
 {
-    partial class Form1
+    partial class FormBase
     {
         /// <summary>
         /// Обязательная переменная конструктора.

@@ -12,35 +12,33 @@ using VActivities.DataBase.Tables;
 
 namespace VActivities
 {
-    public partial class Form1 : Form
+    public partial class FormBase : Form
     {
-        private VActivitiesContext contex = null;
-        public Form1()
+        public static VActivitiesContext Contex = new VActivitiesContext();
+        public FormBase()
         {
             InitializeComponent();
-            contex = new VActivitiesContext();
-            contex.Database.Initialize(false);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MessageBox.Show($"Всего физ.лиц- {contex.Persons.Count()} всего пользователь БД - {contex.Users.Count()}");
+            MessageBox.Show($"Всего физ.лиц- {Contex.Persons.Count()} всего пользователь БД - {Contex.Users.Count()}");
 
             Person person = new Person();
             person.Surname = "Иванов";
             person.Name = "Иван";
             person.MiddleName = "Батькович";
-            contex.Persons.Add(person);
-            contex.SaveChanges();
+            Contex.Persons.Add(person);
+            Contex.SaveChanges();
 
             User user = new User();
-            user.Login = $"nik{contex.Users.Count()}";
+            user.Login = $"nik{Contex.Users.Count()}";
             user.SetCryptoPassword("123");
             user.Active = true;
             user.Person = person;
-            contex.Users.Add(user);
-            contex.SaveChanges();
-            if(contex.Users.First().ComparePassword("123"))
+            Contex.Users.Add(user);
+            Contex.SaveChanges();
+            if(Contex.Users.First().ComparePassword("123"))
                 MessageBox.Show("Пароли совпадают");
         }
     }
