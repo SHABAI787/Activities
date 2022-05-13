@@ -33,14 +33,16 @@ namespace VActivities.DataBase.Tables
         [DisplayName("IMSI")]
         public string IMSI { get; set; }
 
+        [DisplayName("Описание")]
+        public string Description { get; set; }
+
+        [ReadOnly(true)]
         [DisplayName("Дата создания")]
         public DateTime DatеCreated { get; set; }
 
+        [ReadOnly(true)]
         [DisplayName("Дата обновления данных")]
         public DateTime? DatеUpdated { get; set; }
-
-        [DisplayName("Описание")]
-        public string Description { get; set; }
 
         public override string ToString()
         {

@@ -143,6 +143,16 @@ namespace VActivities.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_save_23 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-save-23", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_update_23 {
             get {
                 object obj = ResourceManager.GetObject("icons8-update-23", resourceCulture);

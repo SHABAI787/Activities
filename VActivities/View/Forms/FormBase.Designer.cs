@@ -32,8 +32,13 @@ namespace VActivities
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBase));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.объектыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.целиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.основанияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.физлицаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.пользователиБДToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.историяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingNavigatorActivities = new System.Windows.Forms.BindingNavigator(this.components);
-            this.dataGridViewActivities = new System.Windows.Forms.DataGridView();
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingSourceActivities = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
@@ -41,17 +46,12 @@ namespace VActivities
             this.toolStripButtonImport = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonUpdate = new System.Windows.Forms.ToolStripButton();
-            this.объектыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.целиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.основанияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.физлицаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.пользователиБДToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.историяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridViewActivities = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorActivities)).BeginInit();
             this.bindingNavigatorActivities.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewActivities)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceActivities)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewActivities)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -68,6 +68,49 @@ namespace VActivities
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // объектыToolStripMenuItem
+            // 
+            this.объектыToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_object_23;
+            this.объектыToolStripMenuItem.Name = "объектыToolStripMenuItem";
+            this.объектыToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
+            this.объектыToolStripMenuItem.Text = "Объекты";
+            this.объектыToolStripMenuItem.Click += new System.EventHandler(this.объектыToolStripMenuItem_Click);
+            // 
+            // целиToolStripMenuItem
+            // 
+            this.целиToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_mission_23;
+            this.целиToolStripMenuItem.Name = "целиToolStripMenuItem";
+            this.целиToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.целиToolStripMenuItem.Text = "Цели";
+            // 
+            // основанияToolStripMenuItem
+            // 
+            this.основанияToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_bookmark_23;
+            this.основанияToolStripMenuItem.Name = "основанияToolStripMenuItem";
+            this.основанияToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.основанияToolStripMenuItem.Text = "Основания";
+            // 
+            // физлицаToolStripMenuItem
+            // 
+            this.физлицаToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_persons_23;
+            this.физлицаToolStripMenuItem.Name = "физлицаToolStripMenuItem";
+            this.физлицаToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
+            this.физлицаToolStripMenuItem.Text = "Физ.лица";
+            // 
+            // пользователиБДToolStripMenuItem
+            // 
+            this.пользователиБДToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_users_23;
+            this.пользователиБДToolStripMenuItem.Name = "пользователиБДToolStripMenuItem";
+            this.пользователиБДToolStripMenuItem.Size = new System.Drawing.Size(131, 20);
+            this.пользователиБДToolStripMenuItem.Text = "Пользователи БД";
+            // 
+            // историяToolStripMenuItem
+            // 
+            this.историяToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_history_23;
+            this.историяToolStripMenuItem.Name = "историяToolStripMenuItem";
+            this.историяToolStripMenuItem.Size = new System.Drawing.Size(139, 20);
+            this.историяToolStripMenuItem.Text = "История операций";
             // 
             // bindingNavigatorActivities
             // 
@@ -92,20 +135,6 @@ namespace VActivities
             this.bindingNavigatorActivities.Size = new System.Drawing.Size(800, 25);
             this.bindingNavigatorActivities.TabIndex = 1;
             this.bindingNavigatorActivities.Text = "bindingNavigator1";
-            // 
-            // dataGridViewActivities
-            // 
-            this.dataGridViewActivities.AllowUserToAddRows = false;
-            this.dataGridViewActivities.AllowUserToOrderColumns = true;
-            this.dataGridViewActivities.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridViewActivities.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridViewActivities.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewActivities.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewActivities.Location = new System.Drawing.Point(0, 49);
-            this.dataGridViewActivities.Name = "dataGridViewActivities";
-            this.dataGridViewActivities.ReadOnly = true;
-            this.dataGridViewActivities.Size = new System.Drawing.Size(800, 401);
-            this.dataGridViewActivities.TabIndex = 2;
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -164,47 +193,19 @@ namespace VActivities
             this.toolStripButtonUpdate.Text = "Обновить";
             this.toolStripButtonUpdate.Click += new System.EventHandler(this.toolStripButtonUpdate_Click);
             // 
-            // объектыToolStripMenuItem
+            // dataGridViewActivities
             // 
-            this.объектыToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_object_23;
-            this.объектыToolStripMenuItem.Name = "объектыToolStripMenuItem";
-            this.объектыToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
-            this.объектыToolStripMenuItem.Text = "Объекты";
-            // 
-            // целиToolStripMenuItem
-            // 
-            this.целиToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_mission_23;
-            this.целиToolStripMenuItem.Name = "целиToolStripMenuItem";
-            this.целиToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-            this.целиToolStripMenuItem.Text = "Цели";
-            // 
-            // основанияToolStripMenuItem
-            // 
-            this.основанияToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_bookmark_23;
-            this.основанияToolStripMenuItem.Name = "основанияToolStripMenuItem";
-            this.основанияToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
-            this.основанияToolStripMenuItem.Text = "Основания";
-            // 
-            // физлицаToolStripMenuItem
-            // 
-            this.физлицаToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_persons_23;
-            this.физлицаToolStripMenuItem.Name = "физлицаToolStripMenuItem";
-            this.физлицаToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
-            this.физлицаToolStripMenuItem.Text = "Физ.лица";
-            // 
-            // пользователиБДToolStripMenuItem
-            // 
-            this.пользователиБДToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_users_23;
-            this.пользователиБДToolStripMenuItem.Name = "пользователиБДToolStripMenuItem";
-            this.пользователиБДToolStripMenuItem.Size = new System.Drawing.Size(131, 20);
-            this.пользователиБДToolStripMenuItem.Text = "Пользователи БД";
-            // 
-            // историяToolStripMenuItem
-            // 
-            this.историяToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_history_23;
-            this.историяToolStripMenuItem.Name = "историяToolStripMenuItem";
-            this.историяToolStripMenuItem.Size = new System.Drawing.Size(139, 20);
-            this.историяToolStripMenuItem.Text = "История операций";
+            this.dataGridViewActivities.AllowUserToAddRows = false;
+            this.dataGridViewActivities.AllowUserToOrderColumns = true;
+            this.dataGridViewActivities.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridViewActivities.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridViewActivities.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewActivities.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewActivities.Location = new System.Drawing.Point(0, 49);
+            this.dataGridViewActivities.Name = "dataGridViewActivities";
+            this.dataGridViewActivities.ReadOnly = true;
+            this.dataGridViewActivities.Size = new System.Drawing.Size(800, 401);
+            this.dataGridViewActivities.TabIndex = 2;
             // 
             // FormBase
             // 
@@ -223,8 +224,8 @@ namespace VActivities
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorActivities)).EndInit();
             this.bindingNavigatorActivities.ResumeLayout(false);
             this.bindingNavigatorActivities.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewActivities)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceActivities)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewActivities)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -74,6 +74,7 @@ namespace VActivities.DataBase.Tables
         [DisplayName("Обратная связь")]
         public string Feedback { get; set; }
 
+        [ReadOnly(true)]
         [DisplayName("Дата создания")]
         public DateTime DatеCreated { get; set; }
 

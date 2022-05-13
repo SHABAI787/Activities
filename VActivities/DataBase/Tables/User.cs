@@ -35,9 +35,11 @@ namespace VActivities.DataBase.Tables
         [DisplayName("Физ. лицо")]
         public virtual Person Person { get; set; }
 
+        [ReadOnly(true)]
         [DisplayName("Дата создания")]
         public DateTime DatеCreated { get; set; }
 
+        [ReadOnly(true)]
         [DisplayName("Дата обновления данных")]
         public DateTime? DatеUpdated { get; set; }
 

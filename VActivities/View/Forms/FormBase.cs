@@ -10,26 +10,30 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using VActivities.DataBase.Context;
 using VActivities.DataBase.Tables;
+using VActivities.View.Forms;
 
 namespace VActivities
 {
     public partial class FormBase : Form
     {
-        public User User = null;
+        public static User User = null;
         public static VActivitiesContext Contex = new VActivitiesContext();
         public FormBase()
         {
             InitializeComponent();
         }
 
-        public void AddHistory(string name, string description)
+        public static void AddHistory(string name, string description)
         {
-            History history = new History();
-            history.Name = name;
-            history.Description = description;
-            history.User = User;
-            Contex.History.Add(history);
-            Contex.SaveChanges();
+            if(Contex != null)
+            {
+                History history = new History();
+                history.Name = name;
+                history.Description = description;
+                history.User = User;
+                Contex.History.Add(history);
+                Contex.SaveChanges();
+            }
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -50,8 +54,7 @@ namespace VActivities
             user.Person = person;
             Contex.Users.Add(user);
             Contex.SaveChanges();
-            if(Contex.Users.First().ComparePassword("123"))
-                MessageBox.Show("Пароли совпадают");
+           
         }
 
         private void toolStripButtonUpdate_Click(object sender, EventArgs e)
@@ -64,6 +67,11 @@ namespace VActivities
                 .Include("Executor").Load();
             bindingSourceActivities.DataSource = Contex.Activities.Local.ToBindingList();
             dataGridViewActivities.DataSource = bindingSourceActivities;
+        }
+
+        private void объектыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormInformationObject().Show();
         }
     }
 }
