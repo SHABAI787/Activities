@@ -29,92 +29,78 @@ namespace VActivities.Exchange
         /// <param name="file"></param>
         public static void ExportToXML(this DataGridView dataGridView, string file = null)
         {
-            DataExportImport dataExport = new DataExportImport();
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "*.XML|*.XML";
-
-            if (string.IsNullOrEmpty(file) && saveFileDialog.ShowDialog() == DialogResult.OK)
-                file = saveFileDialog.FileName;
-
-            FormExportOptions formExportOptions = new FormExportOptions();
-            if (!string.IsNullOrEmpty(file) && formExportOptions.ShowDialog() == DialogResult.OK)
+            try
             {
-                IEnumerable<DataGridViewRow> rows = formExportOptions.AllRows ? dataGridView.Rows.Cast<DataGridViewRow>()  : dataGridView.SelectedRows.Cast<DataGridViewRow>();
+                DataExportImport dataExport = new DataExportImport();
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "*.XML|*.XML";
 
-                foreach (DataGridViewRow row in rows)
+                if (string.IsNullOrEmpty(file) && saveFileDialog.ShowDialog() == DialogResult.OK)
+                    file = saveFileDialog.FileName;
+
+                FormExportOptions formExportOptions = new FormExportOptions();
+                if (!string.IsNullOrEmpty(file) && formExportOptions.ShowDialog() == DialogResult.OK)
                 {
-                    Row dRow = new Row();
-                    foreach (DataGridViewCell cell in row.Cells)
-                    {
-                        Cell dCell = new Cell();
-                        dCell.Name = cell.OwningColumn.Name;
-                        dCell.Value = cell.Value == null ? "" : cell.Value.ToString();
-                        dRow.Cells.Add(dCell);
-                    }
-                    dataExport.Rows.Add(dRow);
-                }
+                    IEnumerable<DataGridViewRow> rows = formExportOptions.AllRows ? dataGridView.Rows.Cast<DataGridViewRow>() : dataGridView.SelectedRows.Cast<DataGridViewRow>();
 
-                dataExport.SaveXML(file);
+                    foreach (DataGridViewRow row in rows)
+                    {
+                        Row dRow = new Row();
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            Cell dCell = new Cell();
+                            dCell.Name = cell.OwningColumn.Name;
+                            dCell.Value = cell.Value == null ? "" : cell.Value.ToString();
+                            dRow.Cells.Add(dCell);
+                        }
+                        dataExport.Rows.Add(dRow);
+                    }
+
+                    dataExport.SaveXML(file);
+                }
+            }
+            catch (Exception ex)
+            {
+                FormBase.ShowError(ex.Message);
             }
         }
+
 
         /// <summary>
         /// Импорт данных в формате XML
         /// </summary>
-        /// <param name="dataGridView"></param>
-        public static void ImportFromXML(this DataGridView dataGridView)
-        {
-
-            bool clearDataGridView = MessageBox.Show("Очистить старый список?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                == DialogResult.Yes ? true : false;
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "*.XML|*.XML";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                DataExportImport dataExport = ExchangeXML.LoadXML<DataExportImport>(openFileDialog.FileName);
-
-                if (dataExport != null)
-                {
-                    if (clearDataGridView)
-                        dataGridView.Rows.Clear();
-                 
-                    foreach (var dRow in dataExport.Rows)
-                    {
-                        DataGridViewRow dataGridViewRow = new DataGridViewRow();
-                        dataGridViewRow.CreateCells(dataGridView, dRow.Cells.ToArray());
-                        dataGridView.Rows.Add(dataGridViewRow);
-                    }
-                }
-            }
-
-        }
-
+        /// <typeparam name="T"></typeparam>
+        /// <param name="bindingSource"></param>
         public static void ImportFromXML<T>(this BindingSource bindingSource) where T: IConverXMLToObject
         {
-
-            bool clearDataGridView = MessageBox.Show("Очистить старый список?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                == DialogResult.Yes ? true : false;
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "*.XML|*.XML";
-
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            try
             {
-                DataExportImport dataExport = ExchangeXML.LoadXML<DataExportImport>(openFileDialog.FileName);
+                bool clearDataGridView = MessageBox.Show("Очистить старый список?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                                == DialogResult.Yes ? true : false;
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "*.XML|*.XML";
 
-                if (dataExport != null)
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (clearDataGridView)
-                        bindingSource.Clear();
+                    DataExportImport dataExport = ExchangeXML.LoadXML<DataExportImport>(openFileDialog.FileName);
 
-                    foreach (var dRow in dataExport.Rows)
+                    if (dataExport != null)
                     {
-                        T itemNew = (T)bindingSource.AddNew();
-                        itemNew.Conver<T>(dRow);
+                        if (clearDataGridView)
+                            bindingSource.Clear();
+
+                        foreach (var dRow in dataExport.Rows)
+                        {
+                            T itemNew = (T)bindingSource.AddNew();
+                            itemNew.Conver<T>(dRow);
+                        }
                     }
                 }
             }
-
+            catch (Exception ex)
+            {
+                FormBase.ShowError(ex.Message);
+            }
         }
     }
 

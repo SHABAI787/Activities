@@ -83,6 +83,7 @@ namespace VActivities
             this.целиToolStripMenuItem.Name = "целиToolStripMenuItem";
             this.целиToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
             this.целиToolStripMenuItem.Text = "Цели";
+            this.целиToolStripMenuItem.Click += new System.EventHandler(this.целиToolStripMenuItem_Click);
             // 
             // основанияToolStripMenuItem
             // 
@@ -90,6 +91,7 @@ namespace VActivities
             this.основанияToolStripMenuItem.Name = "основанияToolStripMenuItem";
             this.основанияToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
             this.основанияToolStripMenuItem.Text = "Основания";
+            this.основанияToolStripMenuItem.Click += new System.EventHandler(this.основанияToolStripMenuItem_Click);
             // 
             // физлицаToolStripMenuItem
             // 

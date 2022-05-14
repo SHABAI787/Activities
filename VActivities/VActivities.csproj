@@ -94,11 +94,11 @@
     <Compile Include="View\Forms\FormExportOptions.Designer.cs">
       <DependentUpon>FormExportOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Forms\FormInformationObject.cs">
+    <Compile Include="View\Forms\FormSimple.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Forms\FormInformationObject.Designer.cs">
-      <DependentUpon>FormInformationObject.cs</DependentUpon>
+    <Compile Include="View\Forms\FormSimple.Designer.cs">
+      <DependentUpon>FormSimple.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="View\Forms\FormBase.resx">
       <DependentUpon>FormBase.cs</DependentUpon>
@@ -122,8 +122,8 @@
     <EmbeddedResource Include="View\Forms\FormExportOptions.resx">
       <DependentUpon>FormExportOptions.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Forms\FormInformationObject.resx">
-      <DependentUpon>FormInformationObject.cs</DependentUpon>
+    <EmbeddedResource Include="View\Forms\FormSimple.resx">
+      <DependentUpon>FormSimple.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -42,6 +42,11 @@ namespace VActivities
             contex.SaveChanges();
         }
 
+        public static void ShowError(string text, string caption = "Ошибка")
+        {
+            MessageBox.Show(text, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
            
@@ -62,7 +67,17 @@ namespace VActivities
 
         private void объектыToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new FormInformationObject().Show();
+            new FormSimple(SimpleForm.InformationObject).Show();
+        }
+
+        private void целиToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormSimple(SimpleForm.Purpose).Show();
+        }
+
+        private void основанияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormSimple(SimpleForm.BasisСonducting).Show();
         }
     }
 }
