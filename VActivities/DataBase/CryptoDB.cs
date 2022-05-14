@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 namespace VActivities.DataBase
 {
     /// <summary>
-    /// Класс помошник. Работа с изменением данных.
+    /// Работа с изменением данных. Шифровка и расшифровка.
     /// </summary>
-    public class HelperDB
+    public class CryptoDB
     {
         /// <summary>
         /// Шифрование строки
@@ -55,6 +55,11 @@ namespace VActivities.DataBase
             return character;
         }
 
+        /// <summary>
+        /// Получение хеша строки
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static string GetHashString(string s)
         {
             //переводим строку в байт-массив  
@@ -75,6 +80,11 @@ namespace VActivities.DataBase
             return hash;
         }
 
+        /// <summary>
+        /// Генерация строки случайных символов
+        /// </summary>
+        /// <param name="length"></param>
+        /// <returns></returns>
         public static string GenerateString(int length = 10)
         {
             string res = string.Empty;

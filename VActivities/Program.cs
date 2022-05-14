@@ -31,7 +31,7 @@ namespace VActivities
                     // Выполняем создание базы данных только в том случае если ещё не была создана
                     contex.Database.Initialize(false);
 
-                    // Если новая база данных, то добавляем одного пользователя admin
+                    // Если пользователей нет то добавляем одного пользователя admin
                     if (contex.Users.Count() == 0)
                     {
                         User userAdmin = new User();

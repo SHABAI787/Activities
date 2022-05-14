@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using VActivities.DataBase.Context;
 using VActivities.DataBase.Tables;
+using VActivities.Exchange;
 
 namespace VActivities.View.Forms
 {
@@ -45,6 +46,11 @@ namespace VActivities.View.Forms
         private void FormInformationObject_Load(object sender, EventArgs e)
         {
             toolStripButtonUpdate_Click(sender, e);
+        }
+
+        private void toolStripButtonExport_Click(object sender, EventArgs e)
+        {
+            dataGridView.ExportToXML();
         }
     }
 }

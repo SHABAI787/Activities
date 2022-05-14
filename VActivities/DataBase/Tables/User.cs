@@ -64,9 +64,9 @@ namespace VActivities.DataBase.Tables
             }
             else
             {
-                string data = HelperDB.GenerateString();
-                Data = HelperDB.EncryptString(data);
-                Password = HelperDB.GetHashString($"{password}{data}");
+                string data = CryptoDB.GenerateString();
+                Data = CryptoDB.EncryptString(data);
+                Password = CryptoDB.GetHashString($"{password}{data}");
             }
         }
 
@@ -83,8 +83,8 @@ namespace VActivities.DataBase.Tables
             }
             else
             {
-                string data = HelperDB.DecryptString(Data);
-                return HelperDB.GetHashString($"{passwordCompare}{data}") == Password;
+                string data = CryptoDB.DecryptString(Data);
+                return CryptoDB.GetHashString($"{passwordCompare}{data}") == Password;
             }
         }
     }
