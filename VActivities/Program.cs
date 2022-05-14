@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using VActivities.DataBase.Context;
 using VActivities.DataBase.Tables;
 using VActivities.View.Forms;
 
@@ -19,49 +20,58 @@ namespace VActivities
 
             FormBase formBase = new FormBase();
             FormAuthorization formAuthorization = new FormAuthorization();
-         
+
             do
             {
                 if (formAuthorization.ShowDialog() == DialogResult.OK)
                 {
-                    FormBase.Contex.Database.Initialize(false);
 
-                    if(FormBase.Contex.Users.Count() == 0)
+                    VActivitiesContext contex = new VActivitiesContext();
+
+                    // Выполняем создание базы данных только в том случае если ещё не была создана
+                    contex.Database.Initialize(false);
+
+                    // Если новая база данных, то добавляем одного пользователя admin
+                    if (contex.Users.Count() == 0)
                     {
                         User userAdmin = new User();
                         userAdmin.Login = "admin";
                         userAdmin.SetCryptoPassword("admin");
                         userAdmin.Active = true;
-                        FormBase.Contex.Users.Add(userAdmin);
-                        FormBase.Contex.SaveChanges();
+                        contex.Users.Add(userAdmin);
+                        contex.SaveChanges();
                     }
 
-                    FormBase.User = FormBase.Contex.Users.FirstOrDefault(u => u.Login == formAuthorization.Login);
-
-                    if (FormBase.User == null || !FormBase.User.ComparePassword(formAuthorization.Password))
+                    // Проверка логина и пароля
+                    FormBase.CurrentUser = contex.Users.FirstOrDefault(u => u.Login == formAuthorization.Login);
+                    if (FormBase.CurrentUser == null || !FormBase.CurrentUser.ComparePassword(formAuthorization.Password))
                     {
-                        FormBase.AddHistory("Попытка авторизации", $"Логин - {formAuthorization.Login} или пароль введён не верно");
+                        FormBase.AddHistory(contex, "Попытка авторизации", $"Логин - {formAuthorization.Login} или пароль введён не верно");
                         MessageBox.Show($"Логин или пароль введён не верно", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        FormBase.CurrentUser = null;
                         continue;
                     }
 
-                    if (!FormBase.User.Active)
+                    // Проверка активности учётной записи
+                    if (!FormBase.CurrentUser.Active)
                     {
-                        FormBase.AddHistory("Попытка авторизации", "Учётная запись не активна");
-                        MessageBox.Show($"Учётная запись {FormBase.User.Login} не активна. Доступ запрещён. ", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        FormBase.AddHistory(contex, "Попытка авторизации", "Учётная запись не активна");
+                        MessageBox.Show($"Учётная запись {FormBase.CurrentUser.Login} не активна. Доступ запрещён. ", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         return;
                     }
 
-                    if (FormBase.User.Active)
+                    // Запуск главной рабочей формы
+                    if (FormBase.CurrentUser.Active)
                     {
-                        FormBase.AddHistory("Успешная авторизации", null);
+                        FormBase.AddHistory(contex, "Успешная авторизации", null);
+                        contex.Dispose();
                         Application.Run(new FormBase());
                     }
                 }
                 else
                     return;
-                
-            } while (FormBase.User == null);
+
+            } while (FormBase.CurrentUser == null);
         }
     }
 }

@@ -85,8 +85,6 @@ namespace VActivities.View.Forms
             this.dataGridView.Size = new System.Drawing.Size(800, 425);
             this.dataGridView.TabIndex = 3;
             this.dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellEndEdit);
-            this.dataGridView.CellValuePushed += new System.Windows.Forms.DataGridViewCellValueEventHandler(this.dataGridView_CellValuePushed);
-            this.dataGridView.CurrentCellChanged += new System.EventHandler(this.dataGridView_CurrentCellChanged);
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -96,11 +94,6 @@ namespace VActivities.View.Forms
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Добавить";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
-            // 
-            // bindingSource
-            // 
-            this.bindingSource.CurrentChanged += new System.EventHandler(this.bindingSource_CurrentChanged);
             // 
             // bindingNavigatorDeleteItem
             // 
