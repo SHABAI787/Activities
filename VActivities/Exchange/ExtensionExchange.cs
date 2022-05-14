@@ -11,6 +11,22 @@ namespace VActivities.Exchange
 {
     public static class ExtensionExchange
     {
+        /// <summary>
+        /// Сохранение XML документа
+        /// </summary>
+        /// <typeparam name="T">Тип данных объекта</typeparam>
+        /// <param name="obj">Объект для сохранения</param>
+        /// <param name="pathSave">Путь сохранения</param>
+        public static void SaveXML<T>(this T obj, string pathSave)
+        {
+            ExchangeXML.SerializeXML<T>(pathSave, obj);
+        }
+
+        /// <summary>
+        /// Экспорт данных в формате XML
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        /// <param name="file"></param>
         public static void ExportToXML(this DataGridView dataGridView, string file = null)
         {
             DataExportImport dataExport = new DataExportImport();
@@ -42,9 +58,63 @@ namespace VActivities.Exchange
             }
         }
 
-        public static void SaveXML<T>(this T obj, string pathSave)
+        /// <summary>
+        /// Импорт данных в формате XML
+        /// </summary>
+        /// <param name="dataGridView"></param>
+        public static void ImportFromXML(this DataGridView dataGridView)
         {
-            ExchangeXML.SerializeXML<T>(pathSave, obj);
+
+            bool clearDataGridView = MessageBox.Show("Очистить старый список?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                == DialogResult.Yes ? true : false;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "*.XML|*.XML";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                DataExportImport dataExport = ExchangeXML.LoadXML<DataExportImport>(openFileDialog.FileName);
+
+                if (dataExport != null)
+                {
+                    if (clearDataGridView)
+                        dataGridView.Rows.Clear();
+                 
+                    foreach (var dRow in dataExport.Rows)
+                    {
+                        DataGridViewRow dataGridViewRow = new DataGridViewRow();
+                        dataGridViewRow.CreateCells(dataGridView, dRow.Cells.ToArray());
+                        dataGridView.Rows.Add(dataGridViewRow);
+                    }
+                }
+            }
+
+        }
+
+        public static void ImportFromXML<T>(this BindingSource bindingSource) where T: IConverXMLToObject
+        {
+
+            bool clearDataGridView = MessageBox.Show("Очистить старый список?", "Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                == DialogResult.Yes ? true : false;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "*.XML|*.XML";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                DataExportImport dataExport = ExchangeXML.LoadXML<DataExportImport>(openFileDialog.FileName);
+
+                if (dataExport != null)
+                {
+                    if (clearDataGridView)
+                        bindingSource.Clear();
+
+                    foreach (var dRow in dataExport.Rows)
+                    {
+                        T itemNew = (T)bindingSource.AddNew();
+                        itemNew.Conver<T>(dRow);
+                    }
+                }
+            }
+
         }
     }
 

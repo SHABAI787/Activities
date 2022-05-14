@@ -34,12 +34,19 @@ namespace VActivities.View.Forms
         private void toolStripButtonSave_Click(object sender, EventArgs e)
         {
             dataGridView.EndEdit();
-            foreach (DataGridViewRow row in dataGridView.Rows)
+
+            foreach (var item in contex.ChangeTracker.Entries())
             {
-                var item = row.DataBoundItem as InformationObject;
-                if (item != null && item.Id == 0)
-                    FormBase.AddHistory(contex, "Добавление объекта", item.ToString());
+                if(item.State == EntityState.Deleted)
+                    FormBase.AddHistory(contex, "Удаление объекта", item.Entity.ToString());
+
+                if (item.State == EntityState.Added || item.State == EntityState.Detached)
+                    FormBase.AddHistory(contex, "Добавление объекта", item.Entity.ToString());
+
+                if (item.State == EntityState.Modified)
+                    FormBase.AddHistory(contex, "Изменение объекта", item.Entity.ToString());
             }
+
             contex.SaveChanges();
         }
 
@@ -51,6 +58,11 @@ namespace VActivities.View.Forms
         private void toolStripButtonExport_Click(object sender, EventArgs e)
         {
             dataGridView.ExportToXML();
+        }
+
+        private void toolStripButtonImport_Click(object sender, EventArgs e)
+        {
+            bindingSource.ImportFromXML<InformationObject>();
         }
     }
 }

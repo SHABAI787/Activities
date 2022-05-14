@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VActivities.Exchange;
 
 namespace VActivities.DataBase.Tables
 {
@@ -13,7 +14,7 @@ namespace VActivities.DataBase.Tables
     /// </summary>
     [Serializable]
     [Table("InformationObject")]
-    public class InformationObject
+    public class InformationObject: IConverXMLToObject
     {
         public InformationObject()
         {
@@ -43,6 +44,19 @@ namespace VActivities.DataBase.Tables
         [ReadOnly(true)]
         [DisplayName("Дата обновления данных")]
         public DateTime? DatеUpdated { get; set; }
+
+        public void Conver<T>(Row row)
+        {
+            foreach (var cell in row.Cells)
+            {
+                DateTime dateTime = DateTime.MinValue;
+
+                if(cell.Value != null && DateTime.TryParse(cell.Value, out dateTime))
+                    this.GetType().GetProperty(cell.Name).SetValue(this, dateTime);
+                else
+                    this.GetType().GetProperty(cell.Name).SetValue(this, cell.Value);
+            }
+        }
 
         public override string ToString()
         {

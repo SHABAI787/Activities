@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace VActivities.Exchange
@@ -43,6 +44,39 @@ namespace VActivities.Exchange
                 result = (T)formatter.Deserialize(stream);
             }
             return result;
+        }
+
+        /// <summary>
+        /// Сохранение XML документа
+        /// </summary>
+        /// <typeparam name="T">Тип данных объекта</typeparam>
+        /// <param name="obj">Объект для сохранения</param>
+        /// <param name="pathSave">Путь сохранения</param>
+        public static void SaveXML<T>(T obj, string pathSave)
+        {
+            ExchangeXML.SerializeXML<T>(pathSave, obj);
+        }
+
+        /// <summary>
+        /// Загрузка XML документа
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="pathLoad"></param>
+        /// <returns></returns>
+        public static T LoadXML<T>(string pathLoad)
+        {
+            T res = default(T);
+            try
+            {
+                if (File.Exists(pathLoad))
+                    res = ExchangeXML.DeserializeXML<T>(pathLoad);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка.", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return res;
         }
     }
 }

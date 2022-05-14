@@ -108,6 +108,7 @@ namespace VActivities.View.Forms
             this.toolStripButtonImport.Size = new System.Drawing.Size(23, 22);
             this.toolStripButtonImport.Text = "Импорт";
             this.toolStripButtonImport.ToolTipText = "Импортировать данные";
+            this.toolStripButtonImport.Click += new System.EventHandler(this.toolStripButtonImport_Click);
             // 
             // toolStripButtonExport
             // 
