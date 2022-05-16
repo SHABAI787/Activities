@@ -33,7 +33,7 @@ namespace VActivities.DataBase.Tables
         [NotMapped]
         public string ShortFIO
         {
-            get { return $"{Surname} {Name?.ElementAt(0).ToString()}.{MiddleName?.ElementAt(0).ToString()}."; }
+            get { return $"{Surname} {(string.IsNullOrEmpty(Name) ? "" :Name.ElementAt(0).ToString())}.{(string.IsNullOrEmpty(MiddleName) ? "" : MiddleName.ElementAt(0).ToString())}."; }
         }
 
         [DisplayName("ФИО")]
