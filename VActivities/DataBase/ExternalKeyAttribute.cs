@@ -34,6 +34,9 @@ namespace VActivities.DataBase
     public enum TableDB
     {
         Person,
-        User
+        User,
+        BasisСonducting,
+        Purpose,
+        InformationObject
     }
 }

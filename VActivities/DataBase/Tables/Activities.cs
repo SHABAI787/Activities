@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VActivities.Exchange;
 
 namespace VActivities.DataBase.Tables
 {
@@ -13,7 +14,7 @@ namespace VActivities.DataBase.Tables
     /// </summary>
     [Serializable]
     [Table("Activities")]
-    public class Activities
+    public class Activities: ConverXMLToObject
     {
 
         public Activities()
@@ -30,11 +31,13 @@ namespace VActivities.DataBase.Tables
 
         [DisplayName("Наименование")]
         public string Name { get; set; }
-        
+
+        [ExternalKey("Name",TableDB.BasisСonducting)]
         [ReadOnly(true)]
         [DisplayName("Основание для проведения")]
         public virtual BasisСonducting BasisСonducting { get; set; }
 
+        [ExternalKey("Name", TableDB.Purpose)]
         [ReadOnly(true)]
         [DisplayName("Цель")]
         public virtual Purpose Purpose { get; set; }
@@ -47,6 +50,7 @@ namespace VActivities.DataBase.Tables
         [DisplayName("Окончание проведения")]
         public DateTime? DateOut { get; set; }
 
+        [ExternalKey("LongText", TableDB.InformationObject)]
         [ReadOnly(true)]
         [DisplayName("Объект")]
         public virtual InformationObject InformationObject { get; set; }
@@ -54,10 +58,12 @@ namespace VActivities.DataBase.Tables
         [DisplayName("Подразделение/Заказчик")]
         public string Customer { get; set; }
 
+        [ExternalKey("LongFIO", TableDB.Person)]
         [ReadOnly(true)]
         [DisplayName("Ответственный")]
         public virtual Person Responsible{ get; set; }
 
+        [ExternalKey("LongFIO", TableDB.Person)]
         [ReadOnly(true)]
         [DisplayName("Исполнитель")]
         public virtual Person Executor { get; set; }

@@ -45,9 +45,17 @@ namespace VActivities.DataBase.Tables
         [DisplayName("Дата обновления данных")]
         public DateTime? DatеUpdated { get; set; }
 
+        [Browsable(false)]
+        [DisplayName("Текстовое представление")]
+        [NotMapped]
+        public string LongText
+        {
+            get { return string.Join(", ", new string[] { Num, IMEI, IMSI }); }
+        }
+
         public override string ToString()
         {
-            return $"{Num}, {IMEI}";
+            return string.Join(", ", new string[] { Num, IMEI});
         }
     }
 }

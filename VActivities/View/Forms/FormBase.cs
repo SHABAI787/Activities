@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using VActivities.DataBase.Context;
 using VActivities.DataBase.Tables;
 using VActivities.View.Forms;
+using VActivities.Exchange;
 
 namespace VActivities
 {
@@ -49,20 +50,20 @@ namespace VActivities
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+            toolStripButtonUpdate_Click(sender, e);
         }
 
         private void toolStripButtonUpdate_Click(object sender, EventArgs e)
         {
             contex = new VActivitiesContext();
             contex.Activities
-            .Include("BasisСonducting")
-            .Include("Purpose")
-            .Include("InformationObject")
-            .Include("Responsible")
-            .Include("Executor").Load();
-            bindingSourceActivities.DataSource = contex.Activities.Local.ToBindingList();
-            dataGridViewActivities.DataSource = bindingSourceActivities;
+            .Include(a => a.BasisСonducting)
+            .Include(a => a.Purpose)
+            .Include(a => a.InformationObject)
+            .Include(a => a.Responsible)
+            .Include(a => a.Executor).Load();
+            bindingSource.DataSource = contex.Activities.Local.ToBindingList();
+            dataGridView.DataSource = bindingSource;
         }
 
         private void объектыToolStripMenuItem_Click(object sender, EventArgs e)
@@ -93,6 +94,51 @@ namespace VActivities
         private void историяToolStripMenuItem_Click(object sender, EventArgs e)
         {
             new FormSimple(SimpleForm.History).Show();
+        }
+
+        private void toolStripButtonExport_Click(object sender, EventArgs e)
+        {
+            dataGridView.ExportToXML();
+        }
+
+        private void toolStripButtonImport_Click(object sender, EventArgs e)
+        {
+            bindingSource.ImportFromXML<Activities>(contex);
+        }
+
+        private void toolStripButtonSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dataGridView.EndEdit();
+
+                if (contex.ChangeTracker.Entries().Count() == 0 && dataGridView.Rows.Count == 1)
+                {
+                    bindingSource.Add(dataGridView.Rows[0].DataBoundItem);
+                    contex.SaveChanges();
+                    toolStripButtonUpdate_Click(sender, e);
+                }
+                else
+                {
+                    foreach (var item in contex.ChangeTracker.Entries())
+                    {
+                        if (item.State == EntityState.Deleted)
+                            FormBase.AddHistory(contex, $"Удаление, форма {this.Text}", item.Entity.ToString());
+
+                        if (item.State == EntityState.Added)
+                            FormBase.AddHistory(contex, $"Добавление, форма {this.Text}", item.Entity.ToString());
+
+                        if (item.State == EntityState.Modified)
+                            FormBase.AddHistory(contex, $"Изменение, форма {this.Text}", item.Entity.ToString());
+                    }
+
+                    contex.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

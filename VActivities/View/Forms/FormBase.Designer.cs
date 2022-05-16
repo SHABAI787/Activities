@@ -40,19 +40,19 @@ namespace VActivities
             this.историяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingNavigatorActivities = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingSourceActivities = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonEdit = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonImport = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonUpdate = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.dataGridViewActivities = new System.Windows.Forms.DataGridView();
+            this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorActivities)).BeginInit();
             this.bindingNavigatorActivities.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceActivities)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewActivities)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -121,7 +121,7 @@ namespace VActivities
             // bindingNavigatorActivities
             // 
             this.bindingNavigatorActivities.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.bindingNavigatorActivities.BindingSource = this.bindingSourceActivities;
+            this.bindingNavigatorActivities.BindingSource = this.bindingSource;
             this.bindingNavigatorActivities.CountItem = null;
             this.bindingNavigatorActivities.DeleteItem = this.bindingNavigatorDeleteItem;
             this.bindingNavigatorActivities.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -131,7 +131,7 @@ namespace VActivities
             this.toolStripButtonImport,
             this.toolStripButtonExport,
             this.toolStripButtonUpdate,
-            this.toolStripButton1});
+            this.toolStripButtonSave});
             this.bindingNavigatorActivities.Location = new System.Drawing.Point(0, 24);
             this.bindingNavigatorActivities.MoveFirstItem = null;
             this.bindingNavigatorActivities.MoveLastItem = null;
@@ -179,6 +179,7 @@ namespace VActivities
             this.toolStripButtonImport.Size = new System.Drawing.Size(23, 22);
             this.toolStripButtonImport.Text = "Импорт";
             this.toolStripButtonImport.ToolTipText = "Импортировать данные";
+            this.toolStripButtonImport.Click += new System.EventHandler(this.toolStripButtonImport_Click);
             // 
             // toolStripButtonExport
             // 
@@ -189,6 +190,7 @@ namespace VActivities
             this.toolStripButtonExport.Size = new System.Drawing.Size(23, 22);
             this.toolStripButtonExport.Text = "Экспорт";
             this.toolStripButtonExport.ToolTipText = "Экспортировать данные";
+            this.toolStripButtonExport.Click += new System.EventHandler(this.toolStripButtonExport_Click);
             // 
             // toolStripButtonUpdate
             // 
@@ -200,35 +202,35 @@ namespace VActivities
             this.toolStripButtonUpdate.Text = "Обновить";
             this.toolStripButtonUpdate.Click += new System.EventHandler(this.toolStripButtonUpdate_Click);
             // 
-            // toolStripButton1
+            // toolStripButtonSave
             // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::VActivities.Properties.Resources.icons8_save_23;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButtonSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSave.Image = global::VActivities.Properties.Resources.icons8_save_23;
+            this.toolStripButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSave.Name = "toolStripButtonSave";
+            this.toolStripButtonSave.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonSave.Text = "Сохранить";
+            this.toolStripButtonSave.Click += new System.EventHandler(this.toolStripButtonSave_Click);
             // 
-            // dataGridViewActivities
+            // dataGridView
             // 
-            this.dataGridViewActivities.AllowUserToAddRows = false;
-            this.dataGridViewActivities.AllowUserToOrderColumns = true;
-            this.dataGridViewActivities.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridViewActivities.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridViewActivities.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewActivities.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewActivities.Location = new System.Drawing.Point(0, 49);
-            this.dataGridViewActivities.Name = "dataGridViewActivities";
-            this.dataGridViewActivities.ReadOnly = true;
-            this.dataGridViewActivities.Size = new System.Drawing.Size(800, 401);
-            this.dataGridViewActivities.TabIndex = 2;
+            this.dataGridView.AllowUserToAddRows = false;
+            this.dataGridView.AllowUserToOrderColumns = true;
+            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView.Location = new System.Drawing.Point(0, 49);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(800, 401);
+            this.dataGridView.TabIndex = 2;
             // 
             // FormBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridViewActivities);
+            this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.bindingNavigatorActivities);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -240,8 +242,8 @@ namespace VActivities
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorActivities)).EndInit();
             this.bindingNavigatorActivities.ResumeLayout(false);
             this.bindingNavigatorActivities.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceActivities)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewActivities)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,11 +263,11 @@ namespace VActivities
         private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
         private System.Windows.Forms.ToolStripButton toolStripButtonImport;
         private System.Windows.Forms.ToolStripButton toolStripButtonExport;
-        private System.Windows.Forms.DataGridView dataGridViewActivities;
+        private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.ToolStripButton toolStripButtonUpdate;
-        private System.Windows.Forms.BindingSource bindingSourceActivities;
+        private System.Windows.Forms.BindingSource bindingSource;
         private System.Windows.Forms.ToolStripButton toolStripButtonEdit;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSave;
     }
 }
 

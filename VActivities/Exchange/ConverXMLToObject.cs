@@ -19,15 +19,22 @@ namespace VActivities.Exchange
         {
             DateTime dateTime = DateTime.MinValue;
             bool boolValue = false;
+            int intValue = 0;
 
             if (value == null)
                 return;
 
-            if (DateTime.TryParse(value.ToString(), out dateTime))
-                prInf.SetValue(this, dateTime);
+            if (prInf.PropertyType.Name == "DateTime" && DateTime.TryParse(value.ToString(), out dateTime))
+                    prInf.SetValue(this, dateTime);
+
             else
-                if (bool.TryParse(value.ToString(), out boolValue))
-                prInf.SetValue(this, boolValue);
+                if (prInf.PropertyType.Name == "Boolean" && bool.TryParse(value.ToString(), out boolValue))
+                    prInf.SetValue(this, boolValue);
+
+            else
+                if (prInf.PropertyType.Name == "Int32" && Int32.TryParse(value.ToString(), out intValue))
+                    prInf.SetValue(this, intValue);
+
             else
                 prInf.SetValue(this, (string.IsNullOrEmpty((string)value) ? null : value));
         }
@@ -53,6 +60,9 @@ namespace VActivities.Exchange
         {
             List<Person> persons = null;
             List<User> users = null;
+            List<Purpose> purposes = null;
+            List<InformationObject> informationObjects = null;
+            List<BasisСonducting> basisСonductings = null;
             foreach (var cell in row.Cells)
             {
                 DateTime dateTime = DateTime.MinValue;
@@ -88,8 +98,38 @@ namespace VActivities.Exchange
                                 prInf.SetValue(this, users.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value));
                             }
                             break;
+                        case TableDB.Purpose:
+                            {
+                                if (purposes == null)
+                                {
+                                    context.Purposes.Load();
+                                    purposes = context.Purposes.ToList();
+                                }
+                                prInf.SetValue(this, purposes.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value));
+                            }
+                            break;
+                        case TableDB.InformationObject:
+                            {
+                                if (informationObjects == null)
+                                {
+                                    context.InformationObjects.Load();
+                                    informationObjects = context.InformationObjects.ToList();
+                                }
+                                prInf.SetValue(this, informationObjects.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value));
+                            }
+                            break;
+                        case TableDB.BasisСonducting:
+                            {
+                                if (basisСonductings == null)
+                                {
+                                    context.InformationObjects.Load();
+                                    basisСonductings = context.BasisСonductings.ToList();
+                                }
+                                prInf.SetValue(this, basisСonductings.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value));
+                            }
+                            break;
                         default:
-                            throw new ArgumentOutOfRangeException($"Не задано действие для {Enum.GetName(typeof(TableDB), atr)}");
+                            throw new Exception($"Не задано действие для {Enum.GetName(typeof(TableDB), atr)}");
                     }
                 }
                 else

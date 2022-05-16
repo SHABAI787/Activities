@@ -65,7 +65,7 @@ namespace VActivities.View.Forms
                     break;
                 default:
                     {
-                        throw new ArgumentOutOfRangeException($"Не задано действие для " +
+                        throw new Exception($"Не задано действие для " +
                             $"- {Enum.GetName(typeof(SimpleForm), simpleForm)}");
                     }
             }
