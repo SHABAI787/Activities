@@ -99,6 +99,7 @@ namespace VActivities
             this.физлицаToolStripMenuItem.Name = "физлицаToolStripMenuItem";
             this.физлицаToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
             this.физлицаToolStripMenuItem.Text = "Физ.лица";
+            this.физлицаToolStripMenuItem.Click += new System.EventHandler(this.физлицаToolStripMenuItem_Click);
             // 
             // пользователиБДToolStripMenuItem
             // 

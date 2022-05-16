@@ -47,6 +47,13 @@ namespace VActivities.View.Forms
                         bindingSource.DataSource = contex.Purposes.Local.ToBindingList();
                     }
                     break;
+                case SimpleForm.Person:
+                    {
+                        this.Text = "Физические лица";
+                        contex.Persons.Load();
+                        bindingSource.DataSource = contex.Persons.Local.ToBindingList();
+                    }
+                    break;
             }
             
             dataGridView.DataSource = bindingSource;
@@ -104,6 +111,7 @@ namespace VActivities.View.Forms
                 case SimpleForm.BasisСonducting:bindingSource.ImportFromXML<BasisСonducting>(); break;
                 case SimpleForm.InformationObject:bindingSource.ImportFromXML<InformationObject>(); break;
                 case SimpleForm.Purpose:bindingSource.ImportFromXML<Purpose>(); break;
+                case SimpleForm.Person:bindingSource.ImportFromXML<Person>(); break;
             }
         }
 
@@ -120,6 +128,7 @@ namespace VActivities.View.Forms
     {
         InformationObject,
         BasisСonducting,
-        Purpose
+        Purpose,
+        Person
     }
 }

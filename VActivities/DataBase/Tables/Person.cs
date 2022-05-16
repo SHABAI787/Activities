@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VActivities.Exchange;
 
 namespace VActivities.DataBase.Tables
 {
@@ -13,7 +14,7 @@ namespace VActivities.DataBase.Tables
     /// </summary>
     [Serializable]
     [Table("Person")]
-    public class Person
+    public class Person : ConverXMLToObject
     {
         [Browsable(false)]
         [DisplayName("Идентификатор")]

@@ -14,7 +14,7 @@ namespace VActivities.DataBase.Tables
     /// </summary>
     [Serializable]
     [Table("BasisСonducting")]
-    public class BasisСonducting:IConverXMLToObject
+    public class BasisСonducting:ConverXMLToObject
     {
         [Browsable(false)]
         [DisplayName("Идентификатор")]
@@ -25,19 +25,6 @@ namespace VActivities.DataBase.Tables
 
         [DisplayName("Описание")]
         public string Description { get; set; }
-
-        public void Conver<T>(Row row)
-        {
-            foreach (var cell in row.Cells)
-            {
-                DateTime dateTime = DateTime.MinValue;
-
-                if (cell.Value != null && DateTime.TryParse(cell.Value, out dateTime))
-                    this.GetType().GetProperty(cell.Name).SetValue(this, dateTime);
-                else
-                    this.GetType().GetProperty(cell.Name).SetValue(this, cell.Value);
-            }
-        }
 
         public override string ToString()
         {

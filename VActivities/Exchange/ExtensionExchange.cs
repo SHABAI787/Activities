@@ -71,7 +71,7 @@ namespace VActivities.Exchange
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="bindingSource"></param>
-        public static void ImportFromXML<T>(this BindingSource bindingSource) where T: IConverXMLToObject
+        public static void ImportFromXML<T>(this BindingSource bindingSource) where T: ConverXMLToObject
         {
             try
             {

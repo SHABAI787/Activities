@@ -79,5 +79,10 @@ namespace VActivities
         {
             new FormSimple(SimpleForm.BasisСonducting).Show();
         }
+
+        private void физлицаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormSimple(SimpleForm.Person).Show();
+        }
     }
 }

@@ -68,7 +68,7 @@
     <Compile Include="Exchange\DataExportImport.cs" />
     <Compile Include="Exchange\ExchangeXML.cs" />
     <Compile Include="Exchange\ExtensionExchange.cs" />
-    <Compile Include="Exchange\IConverXMLToObject.cs" />
+    <Compile Include="Exchange\ConverXMLToObject.cs" />
     <Compile Include="View\Forms\FormBase.cs">
       <SubType>Form</SubType>
     </Compile>
