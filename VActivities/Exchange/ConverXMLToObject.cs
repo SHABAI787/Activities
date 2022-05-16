@@ -18,25 +18,37 @@ namespace VActivities.Exchange
         private void SetValue(PropertyInfo prInf, object value)
         {
             DateTime dateTime = DateTime.MinValue;
+            DateTime dateTimeNull = DateTime.MinValue;
             bool boolValue = false;
             int intValue = 0;
 
             if (value == null)
                 return;
 
-            if (prInf.PropertyType.Name == "DateTime" && DateTime.TryParse(value.ToString(), out dateTime))
-                    prInf.SetValue(this, dateTime);
+            if (prInf.PropertyType.Name == "Nullable`1" && DateTime.TryParse(value.ToString(), out dateTimeNull))
+                prInf.SetValue(this, (DateTime?)dateTimeNull);
 
+            if (prInf.PropertyType.Name == "DateTime" && DateTime.TryParse(value.ToString(), out dateTime))
+                prInf.SetValue(this, dateTime);
             else
                 if (prInf.PropertyType.Name == "Boolean" && bool.TryParse(value.ToString(), out boolValue))
-                    prInf.SetValue(this, boolValue);
+                prInf.SetValue(this, boolValue);
 
             else
                 if (prInf.PropertyType.Name == "Int32" && Int32.TryParse(value.ToString(), out intValue))
-                    prInf.SetValue(this, intValue);
+                prInf.SetValue(this, intValue);
 
             else
-                prInf.SetValue(this, (string.IsNullOrEmpty((string)value) ? null : value));
+                if (prInf.PropertyType.Name == "Nullable`1" && DateTime.TryParse(value.ToString(), out dateTimeNull))
+                prInf.SetValue(this, (DateTime?)dateTimeNull);
+            else
+                if (prInf.PropertyType.Name == "Nullable`1" && string.IsNullOrEmpty(value.ToString()))
+                prInf.SetValue(this, null);
+            else
+                if (prInf.PropertyType.Name == "String")
+                prInf.SetValue(this, (string)value);
+            else
+                throw new Exception($"Преобрзование для типа данных {prInf.PropertyType.Name} не задано");
         }
         public virtual void Conver<T>(Row row)
         {

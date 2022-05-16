@@ -32,6 +32,9 @@ namespace VActivities.DataBase.Tables
         [DisplayName("Наименование")]
         public string Name { get; set; }
 
+        [DisplayName("Место проведения")]
+        public string Place { get; set; }
+
         [ExternalKey("Name",TableDB.BasisСonducting)]
         [ReadOnly(true)]
         [DisplayName("Основание для проведения")]

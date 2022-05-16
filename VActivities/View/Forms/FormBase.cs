@@ -140,5 +140,21 @@ namespace VActivities
                 MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonSave_Click(sender, e);
+        }
+
+        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        {
+            new FormActivitiesDetail(contex).Show();
+        }
+
+        private void toolStripButtonEdit_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.CurrentCell != null && dataGridView.CurrentCell.RowIndex >= 0)
+                new FormActivitiesDetail(contex, (Activities)dataGridView.Rows[dataGridView.CurrentCell.RowIndex].DataBoundItem).Show();
+        }
     }
 }
