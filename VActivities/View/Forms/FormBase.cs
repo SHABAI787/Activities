@@ -84,5 +84,10 @@ namespace VActivities
         {
             new FormSimple(SimpleForm.Person).Show();
         }
+
+        private void пользователиБДToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormUsers().Show();
+        }
     }
 }

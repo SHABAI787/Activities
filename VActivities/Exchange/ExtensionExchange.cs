@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VActivities.View.Forms;
+using VActivities.DataBase;
+using VActivities.DataBase.Context;
 
 namespace VActivities.Exchange
 {
@@ -46,11 +49,26 @@ namespace VActivities.Exchange
                     foreach (DataGridViewRow row in rows)
                     {
                         Row dRow = new Row();
+
                         foreach (DataGridViewCell cell in row.Cells)
                         {
                             Cell dCell = new Cell();
                             dCell.Name = cell.OwningColumn.Name;
                             dCell.Value = cell.Value == null ? "" : cell.Value.ToString();
+
+                            PropertyInfo prInf = row.DataBoundItem.GetType().GetProperty(cell.OwningColumn.Name);
+                            ExternalKeyAttribute attribute = (ExternalKeyAttribute)prInf.GetCustomAttribute(typeof(ExternalKeyAttribute));
+                            if (attribute != null)
+                            {
+                                object value = prInf.GetValue(row.DataBoundItem);
+                                if(value != null)
+                                {
+                                    object value2 = value.GetType().GetProperty(attribute.Identifier).GetValue(value);
+                                    dCell.Value = value2 == null ? "" : value2.ToString();
+                                }
+                            }
+
+
                             dRow.Cells.Add(dCell);
                         }
                         dataExport.Rows.Add(dRow);
@@ -71,7 +89,7 @@ namespace VActivities.Exchange
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="bindingSource"></param>
-        public static void ImportFromXML<T>(this BindingSource bindingSource) where T: ConverXMLToObject
+        public static void ImportFromXML<T>(this BindingSource bindingSource, VActivitiesContext context = null) where T: ConverXMLToObject
         {
             try
             {
@@ -92,7 +110,10 @@ namespace VActivities.Exchange
                         foreach (var dRow in dataExport.Rows)
                         {
                             T itemNew = (T)bindingSource.AddNew();
-                            itemNew.Conver<T>(dRow);
+                            if(context == null)
+                                itemNew.Conver<T>(dRow);
+                            else
+                                itemNew.Conver<T>(dRow, context);
                         }
                     }
                 }

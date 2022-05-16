@@ -28,5 +28,24 @@ namespace VActivities.DataBase.Tables
 
         [DisplayName("Отчество")]
         public string MiddleName { get; set; }
+
+        [DisplayName("Краткое ФИО")]
+        [NotMapped]
+        public string ShortFIO
+        {
+            get { return $"{Surname} {Name?.ElementAt(0).ToString()}.{MiddleName?.ElementAt(0).ToString()}."; }
+        }
+
+        [DisplayName("ФИО")]
+        [NotMapped]
+        public string LongFIO
+        {
+            get { return $"{Surname} {Name} {MiddleName}"; }
+        }
+
+        public override string ToString()
+        {
+            return ShortFIO;
+        }
     }
 }

@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VActivities.Exchange;
 
 namespace VActivities.DataBase.Tables
 {
@@ -14,7 +15,7 @@ namespace VActivities.DataBase.Tables
     /// </summary>
     [Serializable]
     [Table("User")]
-    public class User
+    public class User: ConverXMLToObject
     {
         public User()
         {
@@ -22,15 +23,18 @@ namespace VActivities.DataBase.Tables
         }
 
         [Key]
+        [ReadOnly(true)]
         [DisplayName("Логин")]
         public string Login { get; set; }
 
+        [ReadOnly(true)]
         [DisplayName("Пароль")]
         public string Password { get; set; }
 
         [DisplayName("Активность")]
         public bool Active { get; set; }
 
+        [ExternalKey("LongFIO", TableDB.Person)]
         [ReadOnly(true)]
         [DisplayName("Физ. лицо")]
         public virtual Person Person { get; set; }

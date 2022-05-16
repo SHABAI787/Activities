@@ -107,6 +107,7 @@ namespace VActivities
             this.пользователиБДToolStripMenuItem.Name = "пользователиБДToolStripMenuItem";
             this.пользователиБДToolStripMenuItem.Size = new System.Drawing.Size(131, 20);
             this.пользователиБДToolStripMenuItem.Text = "Пользователи БД";
+            this.пользователиБДToolStripMenuItem.Click += new System.EventHandler(this.пользователиБДToolStripMenuItem_Click);
             // 
             // историяToolStripMenuItem
             // 
@@ -123,8 +124,8 @@ namespace VActivities
             this.bindingNavigatorActivities.DeleteItem = this.bindingNavigatorDeleteItem;
             this.bindingNavigatorActivities.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
             this.toolStripButtonEdit,
+            this.bindingNavigatorDeleteItem,
             this.toolStripButtonImport,
             this.toolStripButtonExport,
             this.toolStripButtonUpdate});
