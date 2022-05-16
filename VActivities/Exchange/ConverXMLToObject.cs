@@ -52,6 +52,7 @@ namespace VActivities.Exchange
         public virtual void Conver<T>(Row row, VActivitiesContext context)
         {
             List<Person> persons = null;
+            List<User> users = null;
             foreach (var cell in row.Cells)
             {
                 DateTime dateTime = DateTime.MinValue;
@@ -77,10 +78,19 @@ namespace VActivities.Exchange
                                 prInf.SetValue(this, persons.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value));
                             }
                             break;
+                        case TableDB.User:
+                            {
+                                if (users == null)
+                                {
+                                    context.Users.Include(u => u.Person).Load();
+                                    users = context.Users.ToList();
+                                }
+                                prInf.SetValue(this, users.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value));
+                            }
+                            break;
                         default:
-                            throw new ArgumentOutOfRangeException(Enum.GetName(typeof(TableDB), atr));
+                            throw new ArgumentOutOfRangeException($"Не задано действие для {Enum.GetName(typeof(TableDB), atr)}");
                     }
-
                 }
                 else
                     SetValue(prInf, cell.Value);

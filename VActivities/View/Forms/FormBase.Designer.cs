@@ -46,8 +46,8 @@ namespace VActivities
             this.toolStripButtonImport = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonUpdate = new System.Windows.Forms.ToolStripButton();
-            this.dataGridViewActivities = new System.Windows.Forms.DataGridView();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.dataGridViewActivities = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorActivities)).BeginInit();
             this.bindingNavigatorActivities.SuspendLayout();
@@ -116,6 +116,7 @@ namespace VActivities
             this.историяToolStripMenuItem.Name = "историяToolStripMenuItem";
             this.историяToolStripMenuItem.Size = new System.Drawing.Size(139, 20);
             this.историяToolStripMenuItem.Text = "История операций";
+            this.историяToolStripMenuItem.Click += new System.EventHandler(this.историяToolStripMenuItem_Click);
             // 
             // bindingNavigatorActivities
             // 
@@ -199,6 +200,15 @@ namespace VActivities
             this.toolStripButtonUpdate.Text = "Обновить";
             this.toolStripButtonUpdate.Click += new System.EventHandler(this.toolStripButtonUpdate_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::VActivities.Properties.Resources.icons8_save_23;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            // 
             // dataGridViewActivities
             // 
             this.dataGridViewActivities.AllowUserToAddRows = false;
@@ -212,15 +222,6 @@ namespace VActivities
             this.dataGridViewActivities.ReadOnly = true;
             this.dataGridViewActivities.Size = new System.Drawing.Size(800, 401);
             this.dataGridViewActivities.TabIndex = 2;
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = global::VActivities.Properties.Resources.icons8_save_23;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
             // 
             // FormBase
             // 

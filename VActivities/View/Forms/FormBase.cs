@@ -89,5 +89,10 @@ namespace VActivities
         {
             new FormUsers().Show();
         }
+
+        private void историяToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new FormSimple(SimpleForm.History).Show();
+        }
     }
 }

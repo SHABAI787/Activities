@@ -54,6 +54,20 @@ namespace VActivities.View.Forms
                         bindingSource.DataSource = contex.Persons.Local.ToBindingList();
                     }
                     break;
+                case SimpleForm.History:
+                    {
+                        bindingNavigatorDeleteItem.Enabled = false;
+                        bindingNavigatorAddNewItem.Enabled = false;
+                        this.Text = "История пользователей БД";
+                        contex.History.Include(h => h.User).Load();
+                        bindingSource.DataSource = contex.History.Local.ToBindingList();
+                    }
+                    break;
+                default:
+                    {
+                        throw new ArgumentOutOfRangeException($"Не задано действие для " +
+                            $"- {Enum.GetName(typeof(SimpleForm), simpleForm)}");
+                    }
             }
             
             dataGridView.DataSource = bindingSource;
@@ -112,6 +126,7 @@ namespace VActivities.View.Forms
                 case SimpleForm.InformationObject:bindingSource.ImportFromXML<InformationObject>(); break;
                 case SimpleForm.Purpose:bindingSource.ImportFromXML<Purpose>(); break;
                 case SimpleForm.Person:bindingSource.ImportFromXML<Person>(); break;
+                case SimpleForm.History:bindingSource.ImportFromXML<History>(contex); break;
             }
         }
 
@@ -122,13 +137,14 @@ namespace VActivities.View.Forms
     }
 
     /// <summary>
-    /// Формы с простым набором данных без связанных данных
+    /// Формы с простым набором данных без необходимости изменять связанные данные
     /// </summary>
     public enum SimpleForm
     {
         InformationObject,
         BasisСonducting,
         Purpose,
-        Person
+        Person,
+        History
     }
 }
