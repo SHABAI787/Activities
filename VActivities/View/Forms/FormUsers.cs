@@ -38,30 +38,39 @@ namespace VActivities.View.Forms
 
         private void toolStripButtonSave_Click(object sender, EventArgs e)
         {
-            dataGridView.EndEdit();
 
-            if (contex.ChangeTracker.Entries().Count() == 0 && dataGridView.Rows.Count == 1)
+            try
             {
-                bindingSource.Add(dataGridView.Rows[0].DataBoundItem);
-                contex.SaveChanges();
-                toolStripButtonUpdate_Click(sender, e);
-            }
-            else
-            {
-                foreach (var item in contex.ChangeTracker.Entries())
+                dataGridView.EndEdit();
+
+                if (contex.ChangeTracker.Entries().Count() == 0 && dataGridView.Rows.Count == 1)
                 {
-                    if (item.State == EntityState.Deleted)
-                        FormBase.AddHistory(contex, $"Удаление, форма {this.Text}", item.Entity.ToString());
-
-                    if (item.State == EntityState.Added)
-                        FormBase.AddHistory(contex, $"Добавление, форма {this.Text}", item.Entity.ToString());
-
-                    if (item.State == EntityState.Modified)
-                        FormBase.AddHistory(contex, $"Изменение, форма {this.Text}", item.Entity.ToString());
+                    bindingSource.Add(dataGridView.Rows[0].DataBoundItem);
+                    contex.SaveChanges();
+                    toolStripButtonUpdate_Click(sender, e);
                 }
+                else
+                {
+                    foreach (var item in contex.ChangeTracker.Entries())
+                    {
+                        if (item.State == EntityState.Deleted)
+                            FormBase.AddHistory(contex, $"Удаление, форма {this.Text}", item.Entity.ToString());
 
-                contex.SaveChanges();
+                        if (item.State == EntityState.Added)
+                            FormBase.AddHistory(contex, $"Добавление, форма {this.Text}", item.Entity.ToString());
+
+                        if (item.State == EntityState.Modified)
+                            FormBase.AddHistory(contex, $"Изменение, форма {this.Text}", item.Entity.ToString());
+                    }
+
+                    contex.SaveChanges();
+                }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
 
         private void toolStripButtonExport_Click(object sender, EventArgs e)
@@ -77,6 +86,22 @@ namespace VActivities.View.Forms
         private void dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             ((User)dataGridView.Rows[e.RowIndex].DataBoundItem).DatеUpdated = DateTime.Now;
+        }
+
+        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        {
+            new FormUserDetail(contex).Show();
+        }
+
+        private void toolStripButtonEdit_Click(object sender, EventArgs e)
+        {
+            if(dataGridView.CurrentCell != null && dataGridView.CurrentCell.RowIndex >= 0)
+                new FormUserDetail(contex, (User)dataGridView.Rows[dataGridView.CurrentCell.RowIndex].DataBoundItem).Show();
+        }
+
+        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
+        {
+            toolStripButtonSave_Click(sender, e);
         }
     }
 }

@@ -47,6 +47,7 @@ namespace VActivities
             this.toolStripButtonExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonUpdate = new System.Windows.Forms.ToolStripButton();
             this.dataGridViewActivities = new System.Windows.Forms.DataGridView();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorActivities)).BeginInit();
             this.bindingNavigatorActivities.SuspendLayout();
@@ -128,7 +129,8 @@ namespace VActivities
             this.bindingNavigatorDeleteItem,
             this.toolStripButtonImport,
             this.toolStripButtonExport,
-            this.toolStripButtonUpdate});
+            this.toolStripButtonUpdate,
+            this.toolStripButton1});
             this.bindingNavigatorActivities.Location = new System.Drawing.Point(0, 24);
             this.bindingNavigatorActivities.MoveFirstItem = null;
             this.bindingNavigatorActivities.MoveLastItem = null;
@@ -211,6 +213,15 @@ namespace VActivities
             this.dataGridViewActivities.Size = new System.Drawing.Size(800, 401);
             this.dataGridViewActivities.TabIndex = 2;
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::VActivities.Properties.Resources.icons8_save_23;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "toolStripButton1";
+            // 
             // FormBase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -253,6 +264,7 @@ namespace VActivities
         private System.Windows.Forms.ToolStripButton toolStripButtonUpdate;
         private System.Windows.Forms.BindingSource bindingSourceActivities;
         private System.Windows.Forms.ToolStripButton toolStripButtonEdit;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
 
