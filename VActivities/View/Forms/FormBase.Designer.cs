@@ -42,6 +42,7 @@ namespace VActivities
             this.toolStripButtonExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonUpdate = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.объектыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.целиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.основанияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,7 +84,8 @@ namespace VActivities
             this.toolStripButtonImport,
             this.toolStripButtonExport,
             this.toolStripButtonUpdate,
-            this.toolStripButtonSave});
+            this.toolStripButtonSave,
+            this.toolStripButton1});
             this.bindingNavigatorActivities.Location = new System.Drawing.Point(0, 24);
             this.bindingNavigatorActivities.MoveFirstItem = null;
             this.bindingNavigatorActivities.MoveLastItem = null;
@@ -180,6 +182,16 @@ namespace VActivities
             this.toolStripButtonSave.Text = "Сохранить";
             this.toolStripButtonSave.Click += new System.EventHandler(this.toolStripButtonSave_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = global::VActivities.Properties.Resources.file1337784276;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "Поиск";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // объектыToolStripMenuItem
             // 
             this.объектыToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_object_23;
@@ -271,6 +283,7 @@ namespace VActivities
         private System.Windows.Forms.BindingSource bindingSource;
         private System.Windows.Forms.ToolStripButton toolStripButtonEdit;
         private System.Windows.Forms.ToolStripButton toolStripButtonSave;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
 

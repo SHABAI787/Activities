@@ -156,5 +156,10 @@ namespace VActivities
             if (dataGridView.CurrentCell != null && dataGridView.CurrentCell.RowIndex >= 0)
                 new FormActivitiesDetail(contex, (Activities)dataGridView.Rows[dataGridView.CurrentCell.RowIndex].DataBoundItem).Show();
         }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            new FormSearch(contex, dataGridView).Show();
+        }
     }
 }
