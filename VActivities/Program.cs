@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Data.Entity;
 using System.Windows.Forms;
 using VActivities.DataBase.Context;
 using VActivities.DataBase.Tables;
@@ -34,16 +35,25 @@ namespace VActivities
                     // Если пользователей нет то добавляем одного пользователя admin
                     if (contex.Users.Count() == 0)
                     {
+                        Person personAdm = new Person();
+                        personAdm.Surname = "Админов";
+                        personAdm.Name = "Админ";
+                        personAdm.MiddleName = "Админович";
+                        contex.Persons.Add(personAdm);
+                        contex.SaveChanges();
+
                         User userAdmin = new User();
                         userAdmin.Login = "admin";
                         userAdmin.SetCryptoPassword("admin");
+                        userAdmin.Person = personAdm;
                         userAdmin.Active = true;
                         contex.Users.Add(userAdmin);
                         contex.SaveChanges();
                     }
 
                     // Проверка логина и пароля
-                    FormBase.CurrentUser = contex.Users.FirstOrDefault(u => u.Login == formAuthorization.Login);
+                    contex.Users.Include(u => u.Person).Load();
+                    FormBase.CurrentUser = contex.Users.Local.FirstOrDefault(u => u.Login == formAuthorization.Login);
                     if (FormBase.CurrentUser == null || !FormBase.CurrentUser.ComparePassword(formAuthorization.Password))
                     {
                         FormBase.AddHistory(contex, "Попытка авторизации", $"Логин - {formAuthorization.Login} или пароль введён не верно");

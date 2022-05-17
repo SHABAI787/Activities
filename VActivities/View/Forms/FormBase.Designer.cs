@@ -32,8 +32,13 @@ namespace VActivities
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormBase));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.объектыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.целиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.основанияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.физлицаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.пользователиБДToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.историяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bindingNavigatorActivities = new System.Windows.Forms.BindingNavigator(this.components);
-            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.bindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
@@ -43,17 +48,12 @@ namespace VActivities
             this.toolStripButtonUpdate = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.объектыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.целиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.основанияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.физлицаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.пользователиБДToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.историяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorActivities)).BeginInit();
             this.bindingNavigatorActivities.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -70,6 +70,54 @@ namespace VActivities
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // объектыToolStripMenuItem
+            // 
+            this.объектыToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_object_23;
+            this.объектыToolStripMenuItem.Name = "объектыToolStripMenuItem";
+            this.объектыToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
+            this.объектыToolStripMenuItem.Text = "Объекты";
+            this.объектыToolStripMenuItem.Click += new System.EventHandler(this.объектыToolStripMenuItem_Click);
+            // 
+            // целиToolStripMenuItem
+            // 
+            this.целиToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_mission_23;
+            this.целиToolStripMenuItem.Name = "целиToolStripMenuItem";
+            this.целиToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
+            this.целиToolStripMenuItem.Text = "Цели";
+            this.целиToolStripMenuItem.Click += new System.EventHandler(this.целиToolStripMenuItem_Click);
+            // 
+            // основанияToolStripMenuItem
+            // 
+            this.основанияToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_bookmark_23;
+            this.основанияToolStripMenuItem.Name = "основанияToolStripMenuItem";
+            this.основанияToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.основанияToolStripMenuItem.Text = "Основания";
+            this.основанияToolStripMenuItem.Click += new System.EventHandler(this.основанияToolStripMenuItem_Click);
+            // 
+            // физлицаToolStripMenuItem
+            // 
+            this.физлицаToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_persons_23;
+            this.физлицаToolStripMenuItem.Name = "физлицаToolStripMenuItem";
+            this.физлицаToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
+            this.физлицаToolStripMenuItem.Text = "Физ.лица";
+            this.физлицаToolStripMenuItem.Click += new System.EventHandler(this.физлицаToolStripMenuItem_Click);
+            // 
+            // пользователиБДToolStripMenuItem
+            // 
+            this.пользователиБДToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_users_23;
+            this.пользователиБДToolStripMenuItem.Name = "пользователиБДToolStripMenuItem";
+            this.пользователиБДToolStripMenuItem.Size = new System.Drawing.Size(131, 20);
+            this.пользователиБДToolStripMenuItem.Text = "Пользователи БД";
+            this.пользователиБДToolStripMenuItem.Click += new System.EventHandler(this.пользователиБДToolStripMenuItem_Click);
+            // 
+            // историяToolStripMenuItem
+            // 
+            this.историяToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_history_23;
+            this.историяToolStripMenuItem.Name = "историяToolStripMenuItem";
+            this.историяToolStripMenuItem.Size = new System.Drawing.Size(139, 20);
+            this.историяToolStripMenuItem.Text = "История операций";
+            this.историяToolStripMenuItem.Click += new System.EventHandler(this.историяToolStripMenuItem_Click);
             // 
             // bindingNavigatorActivities
             // 
@@ -96,19 +144,6 @@ namespace VActivities
             this.bindingNavigatorActivities.Size = new System.Drawing.Size(800, 25);
             this.bindingNavigatorActivities.TabIndex = 1;
             this.bindingNavigatorActivities.Text = "bindingNavigator1";
-            // 
-            // dataGridView
-            // 
-            this.dataGridView.AllowUserToAddRows = false;
-            this.dataGridView.AllowUserToOrderColumns = true;
-            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView.Location = new System.Drawing.Point(0, 49);
-            this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(800, 401);
-            this.dataGridView.TabIndex = 2;
             // 
             // bindingNavigatorDeleteItem
             // 
@@ -192,53 +227,18 @@ namespace VActivities
             this.toolStripButton1.Text = "Поиск";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
-            // объектыToolStripMenuItem
+            // dataGridView
             // 
-            this.объектыToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_object_23;
-            this.объектыToolStripMenuItem.Name = "объектыToolStripMenuItem";
-            this.объектыToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
-            this.объектыToolStripMenuItem.Text = "Объекты";
-            this.объектыToolStripMenuItem.Click += new System.EventHandler(this.объектыToolStripMenuItem_Click);
-            // 
-            // целиToolStripMenuItem
-            // 
-            this.целиToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_mission_23;
-            this.целиToolStripMenuItem.Name = "целиToolStripMenuItem";
-            this.целиToolStripMenuItem.Size = new System.Drawing.Size(64, 20);
-            this.целиToolStripMenuItem.Text = "Цели";
-            this.целиToolStripMenuItem.Click += new System.EventHandler(this.целиToolStripMenuItem_Click);
-            // 
-            // основанияToolStripMenuItem
-            // 
-            this.основанияToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_bookmark_23;
-            this.основанияToolStripMenuItem.Name = "основанияToolStripMenuItem";
-            this.основанияToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
-            this.основанияToolStripMenuItem.Text = "Основания";
-            this.основанияToolStripMenuItem.Click += new System.EventHandler(this.основанияToolStripMenuItem_Click);
-            // 
-            // физлицаToolStripMenuItem
-            // 
-            this.физлицаToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_persons_23;
-            this.физлицаToolStripMenuItem.Name = "физлицаToolStripMenuItem";
-            this.физлицаToolStripMenuItem.Size = new System.Drawing.Size(86, 20);
-            this.физлицаToolStripMenuItem.Text = "Физ.лица";
-            this.физлицаToolStripMenuItem.Click += new System.EventHandler(this.физлицаToolStripMenuItem_Click);
-            // 
-            // пользователиБДToolStripMenuItem
-            // 
-            this.пользователиБДToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_users_23;
-            this.пользователиБДToolStripMenuItem.Name = "пользователиБДToolStripMenuItem";
-            this.пользователиБДToolStripMenuItem.Size = new System.Drawing.Size(131, 20);
-            this.пользователиБДToolStripMenuItem.Text = "Пользователи БД";
-            this.пользователиБДToolStripMenuItem.Click += new System.EventHandler(this.пользователиБДToolStripMenuItem_Click);
-            // 
-            // историяToolStripMenuItem
-            // 
-            this.историяToolStripMenuItem.Image = global::VActivities.Properties.Resources.icons8_history_23;
-            this.историяToolStripMenuItem.Name = "историяToolStripMenuItem";
-            this.историяToolStripMenuItem.Size = new System.Drawing.Size(139, 20);
-            this.историяToolStripMenuItem.Text = "История операций";
-            this.историяToolStripMenuItem.Click += new System.EventHandler(this.историяToolStripMenuItem_Click);
+            this.dataGridView.AllowUserToAddRows = false;
+            this.dataGridView.AllowUserToOrderColumns = true;
+            this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView.Location = new System.Drawing.Point(0, 49);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(800, 401);
+            this.dataGridView.TabIndex = 2;
             // 
             // FormBase
             // 
@@ -251,14 +251,15 @@ namespace VActivities
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormBase";
             this.Text = "Мероприятия";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorActivities)).EndInit();
             this.bindingNavigatorActivities.ResumeLayout(false);
             this.bindingNavigatorActivities.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

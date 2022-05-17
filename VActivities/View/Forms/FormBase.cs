@@ -51,6 +51,9 @@ namespace VActivities
         private void Form1_Load(object sender, EventArgs e)
         {
             toolStripButtonUpdate_Click(sender, e);
+            this.Text += $" - {CurrentUser.Login}";
+            if (CurrentUser.Person != null)
+                this.Text += $" ({ CurrentUser.Person?.ShortFIO})";
         }
 
         private void toolStripButtonUpdate_Click(object sender, EventArgs e)
@@ -112,7 +115,7 @@ namespace VActivities
             {
                 dataGridView.EndEdit();
 
-                if (contex.ChangeTracker.Entries().Count() == 0 && dataGridView.Rows.Count == 1)
+                if (contex.ChangeTracker.Entries().Count() <= 1 && dataGridView.Rows.Count == 1)
                 {
                     bindingSource.Add(dataGridView.Rows[0].DataBoundItem);
                     contex.SaveChanges();

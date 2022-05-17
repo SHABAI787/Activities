@@ -114,7 +114,7 @@ namespace VActivities.Exchange
                                 if(person == null)
                                 {
                                     person = new Person();
-                                    string[] FIO = atr.Identifier.Split(' ');
+                                    string[] FIO = cell.Value.Split(' ');
                                     if (FIO.Length > 0)
                                         person.Surname = FIO[0];
                                     if (FIO.Length > 1)
@@ -136,7 +136,7 @@ namespace VActivities.Exchange
                                 if(user == null)
                                 {
                                     user = new User();
-                                    user.Login = atr.Identifier;
+                                    user.Login = cell.Value;
                                 }
 
                                 prInf.SetValue(this, user);
@@ -149,7 +149,13 @@ namespace VActivities.Exchange
                                     context.Purposes.Load();
                                     purposes = context.Purposes.ToList();
                                 }
-                                prInf.SetValue(this, purposes.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value));
+                                Purpose purpose = purposes.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value);
+                                if(purpose == null)
+                                {
+                                    purpose = new Purpose();
+                                    purpose.Name = cell.Value;
+                                }
+                                prInf.SetValue(this, purpose);
                             }
                             break;
                         case TableDB.InformationObject:
@@ -159,7 +165,19 @@ namespace VActivities.Exchange
                                     context.InformationObjects.Load();
                                     informationObjects = context.InformationObjects.ToList();
                                 }
-                                prInf.SetValue(this, informationObjects.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value));
+                                InformationObject informationObject = informationObjects.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value);
+                                if (informationObject == null)
+                                {
+                                    informationObject = new InformationObject();
+                                    string[] items = cell.Value.Split(new string[] { ", " }, StringSplitOptions.None);
+                                    if (items.Length > 0)
+                                        informationObject.Num = items[0];
+                                    if (items.Length > 1)
+                                        informationObject.IMEI = items[1];
+                                    if (items.Length > 2)
+                                        informationObject.IMSI = items[2];
+                                }
+                                prInf.SetValue(this, informationObject);
                             }
                             break;
                         case TableDB.BasisСonducting:
@@ -169,7 +187,13 @@ namespace VActivities.Exchange
                                     context.InformationObjects.Load();
                                     basisСonductings = context.BasisСonductings.ToList();
                                 }
-                                prInf.SetValue(this, basisСonductings.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value));
+                                BasisСonducting basisСonducting = basisСonductings.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value);
+                                if (basisСonducting == null)
+                                {
+                                    basisСonducting = new BasisСonducting();
+                                    basisСonducting.Name = cell.Value;
+                                }
+                                prInf.SetValue(this, basisСonducting);
                             }
                             break;
                         default:
