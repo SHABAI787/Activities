@@ -50,6 +50,12 @@ namespace VActivities.Exchange
             else
                 throw new Exception($"Преобрзование для типа данных {prInf.PropertyType.Name} не задано");
         }
+
+        /// <summary>
+        /// Простое преобразование типов данных
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="row"></param>
         public virtual void Conver<T>(Row row)
         {
             foreach (var cell in row.Cells)
@@ -68,6 +74,12 @@ namespace VActivities.Exchange
             }
         }
 
+        /// <summary>
+        /// Преобразование с поиском объектов в базе данных. При отсутствии объекта выполняется его создание
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="row"></param>
+        /// <param name="context"></param>
         public virtual void Conver<T>(Row row, VActivitiesContext context)
         {
             List<Person> persons = null;
@@ -97,7 +109,20 @@ namespace VActivities.Exchange
                                     context.Persons.Load();
                                     persons = context.Persons.ToList();
                                 }
-                                prInf.SetValue(this, persons.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value));
+
+                                Person person = persons.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value);
+                                if(person == null)
+                                {
+                                    person = new Person();
+                                    string[] FIO = atr.Identifier.Split(' ');
+                                    if (FIO.Length > 0)
+                                        person.Surname = FIO[0];
+                                    if (FIO.Length > 1)
+                                        person.Name = FIO[1];
+                                    if (FIO.Length > 2)
+                                        person.MiddleName = FIO[2];
+                                }
+                                prInf.SetValue(this, person);
                             }
                             break;
                         case TableDB.User:
