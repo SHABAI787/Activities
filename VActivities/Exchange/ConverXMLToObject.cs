@@ -107,7 +107,14 @@ namespace VActivities.Exchange
                                     context.Users.Include(u => u.Person).Load();
                                     users = context.Users.ToList();
                                 }
-                                prInf.SetValue(this, users.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value));
+                                User user = users.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value);
+                                if(user == null)
+                                {
+                                    user = new User();
+                                    user.Login = atr.Identifier;
+                                }
+
+                                prInf.SetValue(this, user);
                             }
                             break;
                         case TableDB.Purpose:

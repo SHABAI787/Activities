@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using VActivities.View.Forms;
 using VActivities.DataBase;
 using VActivities.DataBase.Context;
+using VActivities.DataBase.Tables;
 
 namespace VActivities.Exchange
 {
@@ -69,6 +70,15 @@ namespace VActivities.Exchange
                             }
 
 
+                            dRow.Cells.Add(dCell);
+                        }
+
+                        if(row.DataBoundItem is User)
+                        {
+                            User user = row.DataBoundItem as User;
+                            Cell dCell = new Cell();
+                            dCell.Name = "Data";
+                            dCell.Value = user.Data == null ? "" : user.Data.ToString();
                             dRow.Cells.Add(dCell);
                         }
                         dataExport.Rows.Add(dRow);
