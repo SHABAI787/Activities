@@ -45,7 +45,15 @@ namespace VActivities.View.Forms
             || (a.RegNum != null && a.RegNum.ToUpper().Contains(textBox.Text))
             || (a.RegNumIn != null && a.RegNumIn.ToUpper().Contains(textBox.Text))
             || (a.Result != null && a.Result.ToUpper().Contains(textBox.Text))
-            || (a.Feedback != null && a.Feedback.ToUpper().Contains(textBox.Text)));
+            || (a.DateIn != null && a.DateIn.ToString().Contains(textBox.Text))
+            || (a.DateOut != null && a.DateOut.ToString().Contains(textBox.Text))
+            || (a.DatеCreated != null && a.DatеCreated.ToString().Contains(textBox.Text))
+            || (a.BasisСonducting != null && a.BasisСonducting.ToString().ToUpper().Contains(textBox.Text))
+            || (a.Purpose != null && a.Purpose.ToString().ToUpper().Contains(textBox.Text))
+            || (a.InformationObject != null && a.InformationObject.ToString().ToUpper().Contains(textBox.Text))
+            || (a.Responsible != null && a.Responsible.ToString().ToUpper().Contains(textBox.Text))
+            || (a.Executor != null && a.Executor.ToString().ToUpper().Contains(textBox.Text))
+            || (a.Feedback != null && a.Feedback.ToUpper().ToUpper().Contains(textBox.Text)));
             dataGridView.DataSource = bindingSource;
         }
     }
