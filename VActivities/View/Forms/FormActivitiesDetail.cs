@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Data.Entity;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq;
 using System.Windows.Forms;
 using VActivities.DataBase.Context;
 using VActivities.DataBase.Tables;
@@ -51,7 +45,7 @@ namespace VActivities.View.Forms
 
             context.BasisСonductings.Load();
             comboBoxBasisСonducting.Items.AddRange(context.BasisСonductings.Local.ToArray());
-            if(this.activitie.BasisСonducting != null)
+            if (this.activitie.BasisСonducting != null)
                 comboBoxBasisСonducting.SelectedItem = this.activitie.BasisСonducting;
 
             context.Purposes.Load();
@@ -61,7 +55,7 @@ namespace VActivities.View.Forms
 
             dateTimePickerDateIn.Value = !this.activitie.DateIn.HasValue ? dateTimePickerDateIn.MinDate : this.activitie.DateIn.Value;
             dateTimePickerDateOut.Value = !this.activitie.DateOut.HasValue ? dateTimePickerDateOut.MinDate : this.activitie.DateOut.Value;
-          
+
             context.InformationObjects.Load();
             comboBoxInformationObject.Items.AddRange(context.InformationObjects.Local.ToArray());
             if (this.activitie.InformationObject != null)
@@ -77,7 +71,7 @@ namespace VActivities.View.Forms
             comboBoxExecutor.Items.AddRange(context.Persons.Local.ToArray());
             if (this.activitie.Executor != null)
                 comboBoxExecutor.SelectedItem = this.activitie.Executor;
-            
+
             textBoxRegNum.DataBindings.Add("Text", this.activitie, "RegNum");
             textBoxRegNumIn.DataBindings.Add("Text", this.activitie, "RegNumIn");
             richTextBoxResult.DataBindings.Add("Text", this.activitie, "Result");
@@ -86,12 +80,12 @@ namespace VActivities.View.Forms
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            if(dateTimePickerDateOut.Value < dateTimePickerDateIn.Value)
+            if (dateTimePickerDateOut.Value < dateTimePickerDateIn.Value)
             {
                 MessageBox.Show($"Срок проведения выставлен не верно", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-                
+
             activitie.BasisСonducting = comboBoxBasisСonducting.SelectedItem == null ? null : (BasisСonducting)comboBoxBasisСonducting.SelectedItem;
             activitie.Purpose = comboBoxPurpose.SelectedItem == null ? null : (Purpose)comboBoxPurpose.SelectedItem;
             activitie.InformationObject = comboBoxInformationObject.SelectedItem == null ? null : (InformationObject)comboBoxInformationObject.SelectedItem;

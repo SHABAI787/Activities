@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VActivities.Exchange;
 
 namespace VActivities.DataBase.Tables
@@ -14,7 +10,7 @@ namespace VActivities.DataBase.Tables
     /// </summary>
     [Serializable]
     [Table("InformationObject")]
-    public class InformationObject: ConverXMLToObject
+    public class InformationObject : ConverXMLToObject
     {
         public InformationObject()
         {
@@ -55,7 +51,7 @@ namespace VActivities.DataBase.Tables
 
         public override string ToString()
         {
-            return string.Join(", ", new string[] { Num, IMEI});
+            return string.Join(", ", new string[] { Num, IMEI });
         }
     }
 }

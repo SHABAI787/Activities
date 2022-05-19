@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VActivities.Exchange;
 
 namespace VActivities.DataBase.Tables
@@ -15,7 +11,7 @@ namespace VActivities.DataBase.Tables
     /// </summary>
     [Serializable]
     [Table("User")]
-    public class User: ConverXMLToObject
+    public class User : ConverXMLToObject
     {
         public User()
         {

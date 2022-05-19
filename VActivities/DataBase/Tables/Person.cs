@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VActivities.Exchange;
 
 namespace VActivities.DataBase.Tables
@@ -33,7 +30,7 @@ namespace VActivities.DataBase.Tables
         [NotMapped]
         public string ShortFIO
         {
-            get { return $"{Surname} {(string.IsNullOrEmpty(Name) ? "" :Name.ElementAt(0).ToString())}.{(string.IsNullOrEmpty(MiddleName) ? "" : MiddleName.ElementAt(0).ToString())}."; }
+            get { return $"{Surname} {(string.IsNullOrEmpty(Name) ? "" : Name.ElementAt(0).ToString())}.{(string.IsNullOrEmpty(MiddleName) ? "" : MiddleName.ElementAt(0).ToString())}."; }
         }
 
         [DisplayName("ФИО")]

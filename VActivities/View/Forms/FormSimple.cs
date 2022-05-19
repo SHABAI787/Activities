@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows.Forms;
@@ -69,14 +68,14 @@ namespace VActivities.View.Forms
                             $"- {Enum.GetName(typeof(SimpleForm), simpleForm)}");
                     }
             }
-            
+
             dataGridView.DataSource = bindingSource;
         }
 
-        
+
         private void dataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            if(simpleForm == SimpleForm.InformationObject)
+            if (simpleForm == SimpleForm.InformationObject)
                 ((InformationObject)dataGridView.Rows[e.RowIndex].DataBoundItem).DatеUpdated = DateTime.Now;
         }
 
@@ -122,11 +121,11 @@ namespace VActivities.View.Forms
         {
             switch (simpleForm)
             {
-                case SimpleForm.BasisСonducting:bindingSource.ImportFromXML<BasisСonducting>(); break;
-                case SimpleForm.InformationObject:bindingSource.ImportFromXML<InformationObject>(); break;
-                case SimpleForm.Purpose:bindingSource.ImportFromXML<Purpose>(); break;
-                case SimpleForm.Person:bindingSource.ImportFromXML<Person>(); break;
-                case SimpleForm.History:bindingSource.ImportFromXML<History>(contex); break;
+                case SimpleForm.BasisСonducting: bindingSource.ImportFromXML<BasisСonducting>(); break;
+                case SimpleForm.InformationObject: bindingSource.ImportFromXML<InformationObject>(); break;
+                case SimpleForm.Purpose: bindingSource.ImportFromXML<Purpose>(); break;
+                case SimpleForm.Person: bindingSource.ImportFromXML<Person>(); break;
+                case SimpleForm.History: bindingSource.ImportFromXML<History>(contex); break;
             }
         }
 

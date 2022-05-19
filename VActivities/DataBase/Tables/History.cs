@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VActivities.Exchange;
 
 namespace VActivities.DataBase.Tables
@@ -14,7 +10,7 @@ namespace VActivities.DataBase.Tables
     /// </summary>
     [Serializable]
     [Table("History")]
-    public class History: ConverXMLToObject
+    public class History : ConverXMLToObject
     {
         public History()
         {
@@ -25,7 +21,7 @@ namespace VActivities.DataBase.Tables
         [DisplayName("Идентификатор")]
         public int Id { get; set; }
 
-        [ExternalKey("Login",TableDB.User)]
+        [ExternalKey("Login", TableDB.User)]
         [ReadOnly(true)]
         [DisplayName("Пользователь")]
         public virtual User User { get; set; }

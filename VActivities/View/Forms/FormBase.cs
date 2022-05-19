@@ -4,8 +4,8 @@ using System.Linq;
 using System.Windows.Forms;
 using VActivities.DataBase.Context;
 using VActivities.DataBase.Tables;
-using VActivities.View.Forms;
 using VActivities.Exchange;
+using VActivities.View.Forms;
 
 namespace VActivities
 {
@@ -37,7 +37,7 @@ namespace VActivities
             History history = new History();
             history.Name = name;
             history.Description = description;
-            if(CurrentUser != null)
+            if (CurrentUser != null)
                 history.User = contex.Users.FirstOrDefault(u => u.Login == CurrentUser.Login);
             contex.History.Add(history);
             contex.SaveChanges();

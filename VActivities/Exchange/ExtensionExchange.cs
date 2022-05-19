@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using VActivities.View.Forms;
 using VActivities.DataBase;
 using VActivities.DataBase.Context;
 using VActivities.DataBase.Tables;
+using VActivities.View.Forms;
 
 namespace VActivities.Exchange
 {
@@ -62,7 +59,7 @@ namespace VActivities.Exchange
                             if (attribute != null)
                             {
                                 object value = prInf.GetValue(row.DataBoundItem);
-                                if(value != null)
+                                if (value != null)
                                 {
                                     object value2 = value.GetType().GetProperty(attribute.Identifier).GetValue(value);
                                     dCell.Value = value2 == null ? "" : value2.ToString();
@@ -73,7 +70,7 @@ namespace VActivities.Exchange
                             dRow.Cells.Add(dCell);
                         }
 
-                        if(row.DataBoundItem is User)
+                        if (row.DataBoundItem is User)
                         {
                             User user = row.DataBoundItem as User;
                             Cell dCell = new Cell();
@@ -99,7 +96,7 @@ namespace VActivities.Exchange
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="bindingSource"></param>
-        public static void ImportFromXML<T>(this BindingSource bindingSource, VActivitiesContext context = null) where T: ConverXMLToObject
+        public static void ImportFromXML<T>(this BindingSource bindingSource, VActivitiesContext context = null) where T : ConverXMLToObject
         {
             try
             {
@@ -120,7 +117,7 @@ namespace VActivities.Exchange
                         foreach (var dRow in dataExport.Rows)
                         {
                             T itemNew = (T)bindingSource.AddNew();
-                            if(context == null)
+                            if (context == null)
                                 itemNew.Conver<T>(dRow);
                             else
                                 itemNew.Conver<T>(dRow, context);
@@ -135,5 +132,5 @@ namespace VActivities.Exchange
         }
     }
 
-   
+
 }

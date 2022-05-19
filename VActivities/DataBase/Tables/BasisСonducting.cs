@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VActivities.Exchange;
 
 namespace VActivities.DataBase.Tables
@@ -14,7 +10,7 @@ namespace VActivities.DataBase.Tables
     /// </summary>
     [Serializable]
     [Table("BasisСonducting")]
-    public class BasisСonducting:ConverXMLToObject
+    public class BasisСonducting : ConverXMLToObject
     {
         [Browsable(false)]
         [DisplayName("Идентификатор")]

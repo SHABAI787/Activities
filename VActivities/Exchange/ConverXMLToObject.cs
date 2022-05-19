@@ -111,7 +111,7 @@ namespace VActivities.Exchange
                                 }
 
                                 Person person = persons.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value);
-                                if(person == null)
+                                if (person == null)
                                 {
                                     person = new Person();
                                     string[] FIO = cell.Value.Split(' ');
@@ -133,7 +133,7 @@ namespace VActivities.Exchange
                                     users = context.Users.ToList();
                                 }
                                 User user = users.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value);
-                                if(user == null)
+                                if (user == null)
                                 {
                                     user = new User();
                                     user.Login = cell.Value;
@@ -150,7 +150,7 @@ namespace VActivities.Exchange
                                     purposes = context.Purposes.ToList();
                                 }
                                 Purpose purpose = purposes.FirstOrDefault(p => p.GetType().GetProperty(atr.Identifier).GetValue(p).ToString() == cell.Value);
-                                if(purpose == null)
+                                if (purpose == null)
                                 {
                                     purpose = new Purpose();
                                     purpose.Name = cell.Value;

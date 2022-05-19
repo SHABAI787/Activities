@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.Entity;
+using System.Linq;
+using System.Windows.Forms;
 using VActivities.DataBase.Context;
 using VActivities.DataBase.Tables;
 using VActivities.Exchange;
@@ -70,7 +64,7 @@ namespace VActivities.View.Forms
             {
                 MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           
+
         }
 
         private void toolStripButtonExport_Click(object sender, EventArgs e)
@@ -95,7 +89,7 @@ namespace VActivities.View.Forms
 
         private void toolStripButtonEdit_Click(object sender, EventArgs e)
         {
-            if(dataGridView.CurrentCell != null && dataGridView.CurrentCell.RowIndex >= 0)
+            if (dataGridView.CurrentCell != null && dataGridView.CurrentCell.RowIndex >= 0)
                 new FormUserDetail(contex, (User)dataGridView.Rows[dataGridView.CurrentCell.RowIndex].DataBoundItem).Show();
         }
 

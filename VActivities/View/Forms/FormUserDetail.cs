@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Data.Entity;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VActivities.DataBase.Context;
 using VActivities.DataBase.Tables;
@@ -23,7 +17,7 @@ namespace VActivities.View.Forms
         {
             InitializeComponent();
             // Форма открыта для создания нового объекта
-            if(user == null)
+            if (user == null)
             {
                 this.user = new User();
                 this.user.Login = "Логин";
@@ -73,12 +67,12 @@ namespace VActivities.View.Forms
             {
                 MessageBox.Show(ex.Message, "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void buttonSetPassword_Click(object sender, EventArgs e)
         {
-            if(textBoxPassword.Text != textBoxPasswordDub.Text)
+            if (textBoxPassword.Text != textBoxPasswordDub.Text)
             {
                 MessageBox.Show($"Пароли не совпадают", "Внимание!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
